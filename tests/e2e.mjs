@@ -221,6 +221,7 @@ async function run() {
   const tempRoot = await mkdtemp(join(tmpdir(), "calenfit-e2e-fixtures-"));
   let browser;
   const passed = [];
+  const record = label => { passed.push(label); console.log(`  ✓ ${label}`); };
   const network = { requests: [], responses: [], failures: [], consoleErrors: [], exceptions: [] };
   try {
     browser = await connectChrome(origin);
@@ -249,6 +250,22 @@ async function run() {
       return result.result?.value;
     };
     const click = async selector => assert(await evaluate(`(() => { const element = document.querySelector(${json(selector)}); if (!element) return false; element.click(); return true; })()`), `missing clickable element ${selector}`);
+    const focus = async selector => assert(await evaluate(`(() => { const element = document.querySelector(${json(selector)}); if (!element) return false; element.focus(); return document.activeElement === element; })()`), `missing focusable element ${selector}`);
+    const key = async (keyValue, code = keyValue === " " ? "Space" : keyValue, keyCode) => {
+      const value = { type: "keyDown", key: keyValue, code, windowsVirtualKeyCode: keyCode, nativeVirtualKeyCode: keyCode };
+      await pageSend("Input.dispatchKeyEvent", value);
+      await pageSend("Input.dispatchKeyEvent", { ...value, type: "keyUp" });
+    };
+    const keyboardActivate = async (selector, keyValue = "Enter") => {
+      await focus(selector);
+      assert(await evaluate(`(() => { const element = document.querySelector(${json(selector)}); if (!element) return false; element.dispatchEvent(new KeyboardEvent("keydown", { key: ${json(keyValue)}, bubbles: true })); element.click(); element.dispatchEvent(new KeyboardEvent("keyup", { key: ${json(keyValue)}, bubbles: true })); return true; })()`), `missing keyboard target ${selector}`);
+      await sleep(80);
+    };
+    const keyboardSelect = async (selector, optionIndex) => {
+      await focus(selector);
+      assert(await evaluate(`(() => { const element = document.querySelector(${json(selector)}); if (!element || !element.options[${optionIndex}]) return false; element.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })); element.selectedIndex = ${optionIndex}; element.dispatchEvent(new Event("input", { bubbles: true })); element.dispatchEvent(new Event("change", { bubbles: true })); element.dispatchEvent(new KeyboardEvent("keyup", { key: "ArrowDown", bubbles: true })); return true; })()`), `missing keyboard select target ${selector}`);
+      await sleep(100);
+    };
     const fill = async (selector, value) => assert(await evaluate(`(() => { const element = document.querySelector(${json(selector)}); if (!element) return false; element.focus(); const proto = Object.getPrototypeOf(element); const descriptor = Object.getOwnPropertyDescriptor(proto, "value"); if (descriptor?.set) descriptor.set.call(element, ${json(String(value))}); else element.value = ${json(String(value))}; element.dispatchEvent(new Event("input", { bubbles: true })); element.dispatchEvent(new Event("change", { bubbles: true })); return true; })()`), `missing form field ${selector}`);
     const select = async (selector, value) => { await fill(selector, value); await evaluate(`document.querySelector(${json(selector)})?.dispatchEvent(new Event("change", { bubbles: true }))`); };
     const text = selector => evaluate(`document.querySelector(${json(selector)})?.textContent?.trim() || ""`);
@@ -281,6 +298,18 @@ async function run() {
       assert(dimensions.scrollWidth <= dimensions.innerWidth, `${mobile ? "mobile" : "desktop"} horizontal overflow: ${dimensions.scrollWidth}px > ${dimensions.innerWidth}px; offenders=${JSON.stringify(dimensions.offenders)}`);
       return dimensions;
     };
+    const capture = async (name, target = null) => {
+      await setDevice(1440, 900, false);
+      await evaluate(target ? `document.querySelector(${json(target)})?.scrollIntoView({ block: "start" })` : "window.scrollTo(0, 0)");
+      const desktop = await pageSend("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
+      await mkdir(SCREENSHOT_ROOT, { recursive: true });
+      await writeFile(join(SCREENSHOT_ROOT, `${name}-desktop-1440x900.png`), Buffer.from(desktop.data, "base64"));
+      await setDevice(390, 844, true);
+      await evaluate(target ? `document.querySelector(${json(target)})?.scrollIntoView({ block: "start" })` : "window.scrollTo(0, 0)");
+      const mobile = await pageSend("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
+      await writeFile(join(SCREENSHOT_ROOT, `${name}-mobile-390x844.png`), Buffer.from(mobile.data, "base64"));
+      await setDevice(1440, 900, false);
+    };
 
     await navigate();
     await waitFor(() => evaluate(`Boolean(globalThis.calenfit && document.querySelector("#event-list"))`), { message: "initial app render" });
@@ -294,15 +323,16 @@ async function run() {
     assert(!failedAssets.length, `failed local assets: ${failedAssets.map(item => `${item.url} (${item.status})`).join(", ")}`);
     const localAssets = await evaluate(`Array.from(document.querySelectorAll("link[href],script[src],img[src],source[src]"), node => node.href || node.src).filter(Boolean)`);
     assert(localAssets.every(url => new URL(url).origin === sameOrigin), `non-local asset reference found: ${localAssets.join(", ")}`);
-    passed.push("A load, console/page errors, network, and local asset checks");
+    await capture("scenario-a-top");
+    record("A load, console/page errors, network, and local asset checks");
 
     // B: create, edit, complete a task, select recovery alternatives, attach metadata, delete.
-    await click("#reset-demo");
+    await keyboardActivate("#reset-demo");
     await waitState(current => current?.events?.length === 2);
     await fill("#event-title", "신규 핀테크 면접");
     await fill("#event-date", "2026-09-12");
     await fill("#event-description", "온라인 면접 일정");
-    await click("#event-form button[type=submit]");
+    await keyboardActivate("#event-form button[type=submit]");
     await waitState(current => current?.events?.length === 3 && current.events.some(event => event.title === "신규 핀테크 면접"));
     let current = await state();
     const createdId = current.selectedEventId;
@@ -311,16 +341,16 @@ async function run() {
     await fill("[data-edit-form] input[name=title]", "수정된 핀테크 면접");
     await fill("[data-edit-form] input[name=date]", "2026-09-13");
     await fill("[data-edit-form] textarea[name=description]", "수정된 온라인 면접 일정");
-    await click("[data-edit-form] button[type=submit]");
+    await keyboardActivate("[data-edit-form] button[type=submit]");
     await waitState(next => next?.events?.find(event => event.id === createdId)?.title === "수정된 핀테크 면접");
     current = await state();
     assertEqual(current.events.find(event => event.id === createdId).type, "interview", "edited event classification");
     const firstTaskId = (await evaluate(`document.querySelector("[data-task-id]")?.dataset.taskId || ""`));
     assert(firstTaskId, "edited event has no task");
-    await click("[data-task-id]");
+    await keyboardActivate("[data-task-id]", " ");
     await waitState(next => next?.taskCompletion?.[firstTaskId] === true);
-    await click("[data-recovery-option=invite-email]");
-    await click("[data-recovery-option=job-post]");
+    await keyboardActivate("[data-recovery-option=invite-email]", " ");
+    await keyboardActivate("[data-recovery-option=job-post]", " ");
     await waitState(next => next?.events?.find(event => event.id === createdId)?.recovery?.alternatives?.length === 2);
     const evidenceFile = join(tempRoot, "면접-확인서.pdf");
     await writeFile(evidenceFile, "%PDF-1.4\n% demo evidence\n", "utf8");
@@ -334,7 +364,8 @@ async function run() {
     current = await state();
     assertEqual(current.evidenceFiles.length, 1, "oversized evidence was rejected");
     assert((await text("#ics-error")).includes("10MiB"), "oversized evidence error is not announced");
-    passed.push("B event add/edit/delete flow and evidence metadata/limit");
+    await capture("scenario-b-target", "#event-detail");
+    record("B event add/edit/delete flow and evidence metadata/limit");
 
     // C: state survives reload, then deletion removes linked task/evidence state.
     await reload();
@@ -344,16 +375,17 @@ async function run() {
     assertEqual(current.evidenceFiles.length, 1, "evidence metadata did not persist after reload");
     assertEqual(await evaluate(`document.querySelector("[data-task-id]")?.checked === true`), true, "checked task is not rendered after reload");
     assertEqual(await evaluate(`document.querySelectorAll("[data-recovery-option]:checked").length`), 2, "recovery alternatives did not persist after reload");
-    await click(`[data-delete-event=${json(createdId)}]`);
-    await click(`[data-confirm-delete=${json(createdId)}]`);
+    await capture("scenario-c-target", "#task-list");
+    await keyboardActivate(`[data-delete-event=${json(createdId)}]`);
+    await keyboardActivate(`[data-confirm-delete=${json(createdId)}]`);
     await waitState(next => next?.events?.length === 2 && !next.events.some(event => event.id === createdId));
     current = await state();
     assertEqual(current.evidenceFiles.length, 0, "deleting an event left evidence metadata");
     assert(!Object.keys(current.taskCompletion).some(key => key.startsWith(`${createdId}:`)), "deleting an event left task state");
-    passed.push("C task/recovery/evidence persistence and linked cleanup after delete");
+    record("C task/recovery/evidence persistence and linked cleanup after delete");
 
     // D: invalid ICS is rejected; valid ICS previews and imports a real event.
-    await click("#reset-demo");
+    await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next.selectedEventId === "event-interview");
     const invalidIcs = join(tempRoot, "invalid.ics");
     await writeFile(invalidIcs, "BEGIN:VCALENDAR\nBEGIN:VEVENT\nSUMMARY:제목만 있음\nEND:VEVENT\nEND:VCALENDAR", "utf8");
@@ -367,19 +399,93 @@ async function run() {
     assert((await text("[data-ics-preview]")).includes("토익 시험"), "valid ICS preview missing event");
     await click("[data-confirm-ics]");
     await waitState(next => next?.events?.length === 3 && next.events.some(event => event.channel === "ics" && event.title === "토익 시험"));
-    passed.push("D valid ICS import and invalid ICS error");
+    await capture("scenario-d-target", "#event-detail");
+    record("D valid ICS import and invalid ICS error");
+
+    // Exam-specific UI has a different task plan, recovery model, and policy CTA.
+    await keyboardActivate("#reset-demo");
+    await waitState(next => next?.events?.length === 2 && next.selectedEventId === "event-interview");
+    await keyboardActivate('[data-event-id="event-exam"]');
+    await waitState(next => next?.selectedEventId === "event-exam");
+    assert((await text("#event-detail")).includes("정보보안기사 필기"), "exam event was not selected");
+    assert((await text("#task-list")).includes("결제영수증·접수확인 보관"), "exam receipt task is missing");
+    assert((await text("#task-list")).includes("응시 사실 보존"), "exam attendance task is missing");
+    assert((await text("#policy-cards")).includes("경기청년 역량강화 기회지원"), "exam policy match is missing");
+    assert((await text(".policy-card .cta-row .button-link")).includes("공식 공고 확인"), "unknown exam policy CTA is missing");
+    const examEvidence = join(tempRoot, "시험-영수증.pdf");
+    await writeFile(examEvidence, "%PDF-1.4\n% exam evidence\n", "utf8");
+    await setFile("#evidence-upload", examEvidence);
+    await waitState(next => next?.evidenceFiles?.some(file => file.eventId === "event-exam"));
+    const examTaskId = await evaluate(`document.querySelector("[data-task-id]")?.dataset.taskId || ""`);
+    await keyboardActivate("[data-task-id]", " ");
+    await waitState(next => next?.taskCompletion?.[examTaskId] === true);
+    record("exam UI, policy match, evidence metadata, and task plan");
+
+    // Clipboard success and the visible failure/fallback status are both browser-injectable.
+    await keyboardActivate('[data-event-id="event-interview"]');
+    await waitState(next => next?.selectedEventId === "event-interview");
+    await evaluate(`(() => { window.__copiedText = ""; Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async value => { window.__copiedText = value; } } }); })()`);
+    await keyboardActivate("[data-copy-request]");
+    await waitFor(() => text("[data-copy-status]").then(value => value.includes("클립보드에 복사했습니다")), { message: "clipboard success status" });
+    assert((await evaluate("window.__copiedText || \"\"" )).includes("안랩 PM 면접"), "clipboard success did not receive the event draft");
+    await evaluate(`Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async () => { throw new Error("forced clipboard failure"); } } })`);
+    await keyboardActivate("[data-copy-request]");
+    await waitFor(() => text("[data-copy-status]").then(value => value.includes("직접 복사")), { message: "clipboard fallback status" });
+    record("clipboard success and visible failure fallback");
 
     // Policy state changes must alter the CTA, and reset must restore the demo snapshot.
-    await click("#reset-demo");
+    await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.policies?.[0]?.status === "open");
     assert((await text(".policy-card .cta-row .button-link")).includes("공식 신청 페이지"), "open policy CTA missing");
-    await select("#policy-state", "closed");
-    await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "closed");
-    assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.disabled === true`), true, "closed policy CTA is not disabled");
-    assert((await text(".policy-card .cta-row .button-link")).includes("신청 불가"), "closed policy CTA does not explain the block");
-    await click("#reset-demo");
+    await keyboardSelect("#policy-state", 2);
+    await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "exhausted");
+    assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.disabled === true`), true, "exhausted policy CTA is not disabled");
+    assert((await text(".policy-card .cta-row .button-link")).includes("예산 소진"), "exhausted policy CTA does not explain the block");
+    await keyboardSelect("#policy-state", 3);
+    await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "unknown");
+    assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.tagName`), "A", "unknown policy CTA should link to the source");
+    assert((await text(".policy-card .cta-row .button-link")).includes("공식 공고 확인"), "unknown policy CTA label");
+    await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "open");
-    passed.push("policy CTA state transition and reset");
+    record("policy CTA state transition and reset");
+
+    // A browser-injected source failure must degrade to an explicit, disabled CTA.
+    await evaluate(`(() => { const policy = globalThis.calenfit.state.policies.find(item => item.id === "interview-allowance"); policy.sourceUrl = "https://evil.example/not-an-official-source"; policy.applicationUrl = ""; policy.officialUrl = ""; globalThis.calenfit.render(); })()`);
+    await waitFor(() => text(".policy-card .cta-row .button-link").then(value => value.includes("출처 확인 필요")), { message: "policy source fallback CTA" });
+    assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.disabled === true`), true, "missing policy source CTA is not disabled");
+    await keyboardActivate("#reset-demo");
+    await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "open");
+    record("policy source failure fallback");
+
+    // Corrupt storage recovers to seed data; escaped rendering prevents an injected element.
+    const unrelatedKey = "calenfit-e2e-unrelated";
+    await evaluate(`(() => { localStorage.setItem(${json(unrelatedKey)}, "keep-me"); localStorage.setItem("calenfit-calendar-benefit-v1", "{bad"); })()`);
+    await reload();
+    current = await state();
+    assertEqual(current.events.length, 2, "corrupt localStorage did not recover to seed events");
+    assert((current.error || "").includes("저장"), "corrupt localStorage recovery was not announced");
+    assertEqual(await evaluate(`localStorage.getItem(${json(unrelatedKey)})`), "keep-me", "unrelated localStorage key was lost during recovery");
+    await fill("#event-title", '<img src=x onerror="window.__xss=1"> 안전 테스트');
+    await fill("#event-date", "2026-09-20");
+    await keyboardActivate("#event-form button[type=submit]");
+    await waitState(next => next?.events?.some(event => event.title.includes("<img")));
+    assertEqual(await evaluate(`document.querySelector("#event-detail img") === null`), true, "event title created an executable image element");
+    assert((await text("#event-detail")).includes("<img src=x"), "escaped event title is not visible as text");
+    assertEqual(await evaluate("Boolean(window.__xss)"), false, "XSS marker executed");
+    await keyboardActivate("#reset-demo");
+    await waitState(next => next?.events?.length === 2 && next?.error === "");
+    assertEqual(await evaluate(`localStorage.getItem(${json(unrelatedKey)})`), "keep-me", "reset removed unrelated localStorage key");
+    record("corrupt storage recovery, XSS-safe rendering, and reset isolation");
+
+    // Recovery primary and alternatives are operable from the keyboard alone.
+    await keyboardActivate('[data-primary-proof=yes]', " ");
+    await waitState(next => next?.events?.find(event => event.id === "event-interview")?.recovery?.hasPrimary === true);
+    await keyboardActivate('[data-primary-proof=no]', " ");
+    await waitState(next => next?.events?.find(event => event.id === "event-interview")?.recovery?.hasPrimary === false);
+    await keyboardActivate("[data-recovery-option=invite-email]", " ");
+    await keyboardActivate("[data-recovery-option=job-post]", " ");
+    await waitState(next => next?.events?.find(event => event.id === "event-interview")?.recovery?.alternatives?.length === 2);
+    record("keyboard recovery primary and alternative controls");
 
     // Keyboard focus basics: skip link can receive focus and Tab advances into the form.
     await evaluate(`document.querySelector(".skip-link")?.focus()`);
@@ -387,9 +493,11 @@ async function run() {
     await pageSend("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 });
     await pageSend("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9, nativeVirtualKeyCode: 9 });
     assertEqual(await evaluate(`document.activeElement !== document.body`), true, "Tab did not move focus");
-    passed.push("keyboard focus basics");
+    record("keyboard focus basics");
 
     // Capture exact viewport screenshots from the browser, after returning to a clean demo state.
+    await keyboardActivate("#reset-demo");
+    await waitState(next => next?.events?.length === 2 && next?.selectedEventId === "event-interview");
     await setDevice(1440, 900, false);
     const desktopShot = await pageSend("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
     await mkdir(SCREENSHOT_ROOT, { recursive: true });
@@ -397,7 +505,7 @@ async function run() {
     await setDevice(390, 844, true);
     const mobileShot = await pageSend("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
     await writeFile(join(SCREENSHOT_ROOT, "final-mobile-390x844.png"), Buffer.from(mobileShot.data, "base64"));
-    passed.push("true desktop/mobile screenshots with no horizontal overflow");
+    record("true desktop/mobile screenshots with no horizontal overflow");
 
     assert(!network.consoleErrors.length, `console errors during E2E: ${network.consoleErrors.join(" | ")}`);
     assert(!network.exceptions.length, `page exceptions during E2E: ${network.exceptions.join(" | ")}`);

@@ -40,6 +40,16 @@ node tests/app.test.js
 
 결과: `app logic tests: 82 passed` (Node의 `--localstorage-file` 환경 경고가 있어도 테스트 결과에는 영향이 없습니다).
 
-렌더 검증 산출물: `artifacts/screenshots/desktop-1440x900-v2.png`, `artifacts/screenshots/mobile-390x844-v3.png`.
+브라우저 E2E:
+
+```sh
+node tests/e2e.mjs
+```
+
+결과: `E2E passed: 12 checks` — 로드/콘솔·네트워크·자산, 이벤트 CRUD·증빙 제한, 상태 persistence·연결 삭제, 유효/무효 ICS, 시험 전용 UI, 클립보드 성공/실패, 정책 CTA·출처 실패, 손상 저장/XSS 복구, 키보드 흐름, 데스크톱/모바일 horizontal overflow를 검증했습니다.
+
+렌더 검증 산출물: [`artifacts/screenshots/final-desktop-1440x900.png`](artifacts/screenshots/final-desktop-1440x900.png), [`artifacts/screenshots/final-mobile-390x844.png`](artifacts/screenshots/final-mobile-390x844.png).
+
+시나리오 A–D는 `artifacts/screenshots/scenario-*-desktop-1440x900.png`와 `artifacts/screenshots/scenario-*-mobile-390x844.png`로 각각 보관합니다.
 
 알려진 비목표: 실제 정책 상태 자동 수집, 정부·잡아바 자동 신청, Google Calendar/Gmail OAuth, 실제 메일 발송, OCR/원문 파일 업로드, 다중 사용자 계정 및 금융상품 추천.
