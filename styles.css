@@ -628,7 +628,6 @@ button.event-card {
   color: var(--muted);
 }
 
-.cta-row a,
 .text-link {
   color: var(--cool);
   text-decoration: none;
@@ -646,6 +645,11 @@ button.event-card {
   color: #f4f8ff;
   text-decoration: none;
   font-weight: 700;
+}
+
+.cta-row a.button-link,
+.cta-row a.button-link:visited {
+  color: #f4f8ff;
 }
 
 .button-link.disabled {

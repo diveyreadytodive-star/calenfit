@@ -442,6 +442,8 @@ async function run() {
     assertEqual(await visible("#app-message"), false, "reset did not clear the global error message");
     assertEqual(await visible("#ics-error"), false, "reset did not clear the ICS error message");
     assert((await text(".policy-card .cta-row .button-link")).includes("공식 신청 페이지"), "open policy CTA missing");
+    const openCtaColors = await evaluate(`(() => { const style = getComputedStyle(document.querySelector(".policy-card .cta-row .button-link")); return [style.color, style.backgroundColor]; })()`);
+    assert(openCtaColors[0] !== openCtaColors[1], `open policy CTA text is invisible: ${openCtaColors.join(" / ")}`);
     await capture("scenario-d-policy-open", "#policy-cards");
     await keyboardSelect("#policy-state", 1);
     await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "closed");
@@ -456,6 +458,8 @@ async function run() {
     await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "unknown");
     assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.tagName`), "A", "unknown policy CTA should link to the source");
     assert((await text(".policy-card .cta-row .button-link")).includes("공식 공고 확인"), "unknown policy CTA label");
+    const unknownCtaColors = await evaluate(`(() => { const style = getComputedStyle(document.querySelector(".policy-card .cta-row .button-link")); return [style.color, style.backgroundColor]; })()`);
+    assert(unknownCtaColors[0] !== unknownCtaColors[1], `unknown policy CTA text is invisible: ${unknownCtaColors.join(" / ")}`);
     await capture("scenario-d-policy-unknown", "#policy-cards");
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "open");
