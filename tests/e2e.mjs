@@ -323,7 +323,7 @@ async function run() {
     assert(!failedAssets.length, `failed local assets: ${failedAssets.map(item => `${item.url} (${item.status})`).join(", ")}`);
     const localAssets = await evaluate(`Array.from(document.querySelectorAll("link[href],script[src],img[src],source[src]"), node => node.href || node.src).filter(Boolean)`);
     assert(localAssets.every(url => new URL(url).origin === sameOrigin), `non-local asset reference found: ${localAssets.join(", ")}`);
-    await capture("scenario-a-top");
+    await capture("scenario-a-prevention", "#task-list");
     record("A load, console/page errors, network, and local asset checks");
 
     // B: create, edit, complete a task, select recovery alternatives, attach metadata, delete.
@@ -364,7 +364,7 @@ async function run() {
     current = await state();
     assertEqual(current.evidenceFiles.length, 1, "oversized evidence was rejected");
     assert((await text("#ics-error")).includes("10MiB"), "oversized evidence error is not announced");
-    await capture("scenario-b-target", "#event-detail");
+    await capture("scenario-b-recovery", "#recovery-panel");
     record("B event add/edit/delete flow and evidence metadata/limit");
 
     // C: state survives reload, then deletion removes linked task/evidence state.
@@ -375,7 +375,6 @@ async function run() {
     assertEqual(current.evidenceFiles.length, 1, "evidence metadata did not persist after reload");
     assertEqual(await evaluate(`document.querySelector("[data-task-id]")?.checked === true`), true, "checked task is not rendered after reload");
     assertEqual(await evaluate(`document.querySelectorAll("[data-recovery-option]:checked").length`), 2, "recovery alternatives did not persist after reload");
-    await capture("scenario-c-target", "#task-list");
     await keyboardActivate(`[data-delete-event=${json(createdId)}]`);
     await keyboardActivate(`[data-confirm-delete=${json(createdId)}]`);
     await waitState(next => next?.events?.length === 2 && !next.events.some(event => event.id === createdId));
@@ -399,8 +398,9 @@ async function run() {
     assert((await text("[data-ics-preview]")).includes("토익 시험"), "valid ICS preview missing event");
     await click("[data-confirm-ics]");
     await waitState(next => next?.events?.length === 3 && next.events.some(event => event.channel === "ics" && event.title === "토익 시험"));
-    await capture("scenario-d-target", "#event-detail");
-    record("D valid ICS import and invalid ICS error");
+    assertEqual(await visible("#ics-error"), false, "successful ICS retry left the prior error visible");
+    await capture("ics-retry-success", "#event-detail");
+    record("valid ICS retry clears the prior invalid-ICS error");
 
     // Exam-specific UI has a different task plan, recovery model, and policy CTA.
     await keyboardActivate("#reset-demo");
@@ -419,6 +419,7 @@ async function run() {
     const examTaskId = await evaluate(`document.querySelector("[data-task-id]")?.dataset.taskId || ""`);
     await keyboardActivate("[data-task-id]", " ");
     await waitState(next => next?.taskCompletion?.[examTaskId] === true);
+    await capture("scenario-c-exam-support", "#event-detail");
     record("exam UI, policy match, evidence metadata, and task plan");
 
     // Clipboard success and the visible failure/fallback status are both browser-injectable.
@@ -437,14 +438,21 @@ async function run() {
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.policies?.[0]?.status === "open");
     assert((await text(".policy-card .cta-row .button-link")).includes("공식 신청 페이지"), "open policy CTA missing");
+    await capture("scenario-d-policy-open", "#policy-cards");
+    await keyboardSelect("#policy-state", 1);
+    await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "closed");
+    assert((await text(".policy-card .cta-row .button-link")).includes("마감"), "closed policy CTA does not explain the block");
+    await capture("scenario-d-policy-closed", "#policy-cards");
     await keyboardSelect("#policy-state", 2);
     await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "exhausted");
     assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.disabled === true`), true, "exhausted policy CTA is not disabled");
     assert((await text(".policy-card .cta-row .button-link")).includes("예산 소진"), "exhausted policy CTA does not explain the block");
+    await capture("scenario-d-policy-exhausted", "#policy-cards");
     await keyboardSelect("#policy-state", 3);
     await waitState(next => next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "unknown");
     assertEqual(await evaluate(`document.querySelector(".policy-card .cta-row .button-link")?.tagName`), "A", "unknown policy CTA should link to the source");
     assert((await text(".policy-card .cta-row .button-link")).includes("공식 공고 확인"), "unknown policy CTA label");
+    await capture("scenario-d-policy-unknown", "#policy-cards");
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.policies?.find(policy => policy.id === "interview-allowance")?.status === "open");
     record("policy CTA state transition and reset");

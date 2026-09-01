@@ -43,4 +43,4 @@
 
 렌더 검증 산출물은 [`artifacts/screenshots/final-desktop-1440x900.png`](../artifacts/screenshots/final-desktop-1440x900.png), [`artifacts/screenshots/final-mobile-390x844.png`](../artifacts/screenshots/final-mobile-390x844.png)입니다.
 
-시나리오 A–D의 단계별 화면은 `artifacts/screenshots/scenario-*-desktop-1440x900.png`와 `artifacts/screenshots/scenario-*-mobile-390x844.png`에 보관합니다.
+시나리오 A–D의 단계별 화면은 `scenario-a-prevention-*`, `scenario-b-recovery-*`, `scenario-c-exam-support-*`, `scenario-d-policy-{open,closed,exhausted,unknown}-*` 파일에 보관합니다. ICS 실패 후 성공 재시도는 `ics-retry-success-*`에서 확인합니다.
