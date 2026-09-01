@@ -9,19 +9,54 @@
     />
     <title>캘린핏 — 캘린더를 잘 쓰면, 돈이 나온다</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="landing.css" />
+    <link rel="stylesheet" href="logic-map.css" />
+    <link rel="stylesheet" href="calendar-focus.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
 
+    <section id="landing-screen" class="landing-screen" aria-labelledby="landing-title">
+      <header class="landing-nav">
+        <a class="landing-logo" href="#landing-title" aria-label="캘린핏 홈">calenfit</a>
+        <button id="landing-demo-button" class="landing-nav-button" type="button">데모 시작</button>
+      </header>
+      <div class="landing-copy">
+        <p class="landing-kicker">CALENDAR BENEFIT AGENT</p>
+        <h1 id="landing-title">AI가 내 일정을 읽고,<br />받을 혜택을 찾습니다.</h1>
+        <p><strong>AI 캘린더 에이전트 캘린핏</strong>은 면접·시험·지원 마감 같은 일정 신호를 읽고,<br />놓치기 쉬운 지원금과 필요한 증빙 행동을 먼저 알려줍니다.</p>
+        <div class="landing-actions">
+          <button id="landing-start-button" class="landing-primary" type="button">내 일정에서 혜택 찾기</button>
+          <a class="landing-secondary" href="#landing-how">어떻게 작동하나요?</a>
+        </div>
+      </div>
+      <div class="landing-art" aria-hidden="true">
+        <div class="landing-orbit orbit-one"></div><div class="landing-orbit orbit-two"></div>
+        <div class="landing-calendar-card"><span>9월</span><strong>04</strong><small>채용 면접 일정</small></div>
+        <div class="landing-benefit-card"><span>추천 혜택</span><strong>면접수당<br />최대 15만원</strong><small>공식 출처 확인 필요</small></div>
+      </div>
+      <section id="landing-how" class="logic-map" aria-labelledby="logic-map-title">
+        <p class="landing-kicker">HOW CALENFIT WORKS</p>
+        <h2 id="logic-map-title">일정에서 행동까지,<br />AI가 먼저 연결합니다.</h2>
+        <ol>
+          <li><span>01</span><strong>일정 연결</strong><p>연동된 캘린더에서 면접·시험·마감 신호를 읽습니다.</p></li>
+          <li><span>02</span><strong>AI 맥락 분석</strong><p>일정 제목과 설명을 바탕으로 관련 지원 기회를 후보로 정리합니다.</p></li>
+          <li><span>03</span><strong>공식 기준 확인</strong><p>정책 규칙과 공식 공고를 기준으로 확인할 조건을 안내합니다.</p></li>
+          <li><span>04</span><strong>행동 알림</strong><p>증빙 보관·확인서 요청·신청 마감 전 할 일을 캘린더에 남깁니다.</p></li>
+        </ol>
+        <p class="logic-safety">AI는 후보와 다음 행동을 제안합니다. 최종 자격·예산·신청 판단은 공식 운영기관 기준입니다.</p>
+      </section>
+    </section>
+
     <div class="shell">
-      <main id="main-content" class="content">
+      <main id="main-content" class="content" tabindex="-1">
         <header class="app-bar">
           <div class="app-bar-copy">
             <p class="eyebrow">SEPTEMBER → OCTOBER 2026</p>
-            <h2>AI가 내 일정에서 받을 혜택을 찾습니다.</h2>
+            <h2>안녕하세요, 블랑코님.</h2>
             <p class="app-bar-note">
-              캘린더는 앞에, 지원금 판단은 옆에, 증빙은 뒤에 둡니다.
+              오늘의 일정과 혜택 준비 현황을 확인하세요.
             </p>
           </div>
           <div class="app-bar-meta" aria-label="데모 상태">
@@ -34,12 +69,14 @@
         <div id="app-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
         <div id="app-message" class="inline-error" role="status" hidden></div>
 
+        <section id="dashboard-metrics" class="metrics-grid" aria-label="대시보드 요약"></section>
+
         <div class="studio-grid">
           <section id="calendar-panel" class="panel calendar-panel" aria-labelledby="calendar-heading">
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">CALENDAR</p>
-                <h2 id="calendar-heading">이번 주 달력</h2>
+                <h2 id="calendar-heading">2026년 9월 월간 달력</h2>
               </div>
               <div class="calendar-legend" aria-label="일정 범례">
                 <span class="chip">면접</span>
@@ -98,6 +135,8 @@
                 <em>Deadline</em>
               </div>
             </div>
+
+            <div id="month-calendar" class="month-calendar" aria-label="2026년 9월 월간 일정 달력"></div>
 
             <div id="event-list" class="event-list calendar-agenda" aria-label="등록된 일정"></div>
             <div
@@ -293,8 +332,6 @@
           </aside>
         </div>
 
-        <section id="dashboard-metrics" class="metrics-grid" aria-label="대시보드 요약"></section>
-
         <footer class="footer-note">
           공식 공고가 바뀔 수 있으므로 신청 전 출처 링크를 다시 확인하세요.
           <a href="#policy-cards">정책 출처로 이동</a>
@@ -325,6 +362,23 @@
             실제 개인정보·캘린더·문서를 전송하지 않습니다. 화면의 데이터는 모두
             가상입니다.
           </p>
+        </details>
+
+        <details class="rail-disclosure panel rail-panel" id="ai-settings-panel">
+          <summary>
+            <span><span class="eyebrow">AI SETTINGS</span><strong>AI 연결 설정</strong></span>
+            <span id="ai-connection-status" class="badge neutral">미연결</span>
+          </summary>
+          <form id="ai-settings-form" class="stack-form">
+            <label for="ai-provider">제공자
+              <select id="ai-provider" name="provider"><option value="openai-compatible">OpenAI 호환 API</option><option value="anthropic">Anthropic</option><option value="gemini">Google Gemini</option></select>
+            </label>
+            <label for="ai-model">모델명<input id="ai-model" name="model" placeholder="예: gpt-5-mini" autocomplete="off" /></label>
+            <label for="ai-api-key">API 키<input id="ai-api-key" name="apiKey" type="password" placeholder="이 탭에서만 사용" autocomplete="off" /></label>
+            <label for="ai-endpoint">서버 프록시 URL<input id="ai-endpoint" name="endpoint" placeholder="/api/ai/classify" autocomplete="off" /></label>
+            <button class="secondary-button" type="submit">이 탭에 연결 설정</button>
+          </form>
+          <p class="form-help">키는 localStorage에 저장하지 않습니다. 배포본은 브라우저 키 대신 서버 프록시를 사용해야 합니다.</p>
         </details>
 
         <details class="rail-disclosure panel rail-panel" id="quick-add-panel">
@@ -399,6 +453,30 @@
             안내합니다.
           </p>
           <div id="ics-error" class="inline-error" role="alert" hidden></div>
+        </details>
+
+        <details class="rail-disclosure panel rail-panel" id="calendar-connections-panel">
+          <summary>
+            <span><span class="eyebrow">CALENDAR PROVIDERS</span><strong>일정 연결 상태</strong></span>
+            <span class="badge cool">데모 어댑터</span>
+          </summary>
+          <div id="calendar-connections" class="connection-list" aria-live="polite"></div>
+          <p class="form-help">Google Calendar는 OAuth callback과 서버 토큰 저장이 필요한 구조만 제공합니다. 현재 화면의 성공·실패는 가상 상태입니다.</p>
+        </details>
+
+        <details class="rail-disclosure panel rail-panel" id="notification-panel">
+          <summary>
+            <span><span class="eyebrow">NOTIFICATION OUTBOX</span><strong>마감 알림 예약</strong></span>
+            <span class="badge warm">실제 발송 안 함</span>
+          </summary>
+          <form id="notification-form" class="stack-form">
+            <label for="notification-channel">채널<select id="notification-channel"><option value="web">웹 알림</option><option value="email">이메일</option><option value="sms">SMS</option><option value="kakao">카카오 알림톡</option></select></label>
+            <label for="notification-offset">시점<select id="notification-offset"><option value="7">D-7</option><option value="3" selected>D-3</option><option value="1">D-1</option><option value="0">당일</option><option value="-1">D+1</option></select></label>
+            <label class="check-pill"><input id="notification-consent" type="checkbox"> 수신 동의(데모)</label>
+            <button class="secondary-button" type="submit">아웃박스에 예약</button>
+          </form>
+          <div id="notification-outbox" class="outbox-list" aria-live="polite"></div>
+          <p class="form-help">SMS는 서버 서명키·수신 동의, 카카오 알림톡은 승인 템플릿·사업자 서버가 필요합니다. 데모 번호는 010-****-0426입니다.</p>
         </details>
 
         <nav class="mobile-dock" aria-label="주요 이동">

@@ -2,12 +2,18 @@
 
 ## 입력 → 판단 → 안내 → 기록
 
+제품 슬로건은 **AI가 내 일정을 읽고, 받을 혜택을 찾습니다.**이며 내부 첫 화면은 2026년 9월 월간 캘린더입니다. 월간 날짜 셀에는 면접·시험 유형, 정책 후보 상태, 마감 위험, 증빙 태스크가 함께 표시되고 날짜를 클릭하면 상세가 열립니다.
+
 | 단계 | 제품 동작 | 사용자에게 보이는 것 |
 | --- | --- | --- |
 | 입력 | 수동 일정 제목·날짜·설명·유형, `.ics` 파일 선택, 증빙 파일 선택 | 입력 폼의 목적과 로컬 처리 범위 |
 | 판단 | 제목·설명 기반 결정론적 분류, 프로필과 이벤트를 명시 규칙에 대입 | 면접/시험 유형, 신뢰도, `가능성 높음`·`확인 필요`·`현재 대상 아님` |
 | 안내 | 정책 조건, D-3/D+1/D+3 행동, 복구 가능한 대체 증빙 제공 | 다음 행동, 공식 신청 링크, 운영기관 최종 판단 고지 |
 | 기록 | `localStorage`에 이벤트 CRUD, 태스크 완료, 복구 체크, 정책 상태, 파일 메타데이터 연결 | 새로고침 후에도 유지되는 사건별 타임라인과 증빙 보관함 |
+
+## 연결·알림 어댑터
+
+`CalendarProviderAdapter`는 자체 캘린더, ICS, Google OAuth placeholder를 동일한 상태 계약으로 노출합니다. Google의 서버 설정 필요·연결 대기·동기화 성공 mock·권한 거부 mock은 모두 데모 상태이며 실제 OAuth나 토큰을 브라우저에 두지 않습니다. `NotificationChannelAdapter`는 웹·이메일·SMS·카카오 채널의 예약 payload와 차단 사유를 outbox에 기록하지만, 자격증명 없이는 외부 발송하지 않습니다.
 
 ## 브라우저 데모 절차
 
@@ -33,13 +39,13 @@
 
 ## 제외 범위
 
-전국 정책 자동 크롤링, Google Calendar/Gmail OAuth, 정부24·잡아바 자동 신청, 실제 메일 발송, OCR/문서 원문 전송, 마이데이터, 다중 사용자 계정, 금융상품 추천은 MVP에 포함하지 않습니다. ICS는 정적 파일을 브라우저에서 파싱·미리보기·확정 가져오기만 하며 외부 캘린더 동기화는 제공하지 않습니다.
+전국 정책 자동 크롤링, 실제 Google Calendar/Gmail OAuth 발급·동기화, 정부24·잡아바 자동 신청, 실제 메일/SMS/카카오 발송, OCR/문서 원문 전송, 마이데이터, 다중 사용자 계정, 금융상품 추천은 MVP에 포함하지 않습니다. ICS는 정적 파일을 브라우저에서 파싱·미리보기·확정 가져오기만 하며 외부 캘린더 동기화는 제공하지 않습니다. 실제 OAuth callback·token vault·webhook watch 확장 구조는 [`ARCHITECTURE.md`](ARCHITECTURE.md)에 문서화합니다.
 
 ## 검증 결과
 
-`node tests/app.test.js` 실행 결과 `app logic tests: 82 passed`. 검증 범위에는 분류·정책 규칙, ICS 오류와 시간대 경고, CRUD, localStorage 복원, 태스크·복구 상태, 증빙 형식/10MiB 제한, 공식 링크 allowlist가 포함됩니다.
+`node tests/app.test.js` 실행 결과 `app logic tests: 94 passed`. 검증 범위에는 분류·정책 규칙, ICS 오류와 시간대 경고, CRUD, localStorage 복원, 태스크·복구 상태, 증빙 형식/10MiB 제한, 공식 링크 allowlist, provider/AI/notification adapter 계약이 포함됩니다.
 
-`node tests/e2e.mjs` 실행 결과 `E2E passed: 12 checks`. 로드·콘솔/네트워크/자산, 이벤트 CRUD와 증빙 제한, persistence·연결 삭제, 유효/무효 ICS, 시험 전용 UI, 클립보드 성공/실패, 정책 CTA·출처 실패, 손상 저장/XSS 복구, 키보드 흐름, 1440×900 및 390×844 스크린샷과 horizontal overflow를 검증합니다.
+`node tests/e2e.mjs` 실행 결과 `E2E passed: 14 checks`. 로드·콘솔/네트워크/자산, 이벤트 CRUD와 증빙 제한, persistence·연결 삭제, 유효/무효 ICS, 시험 전용 UI, 클립보드 성공/실패, 정책 CTA·출처 실패, 손상 저장/XSS 복구, 키보드 흐름, 월간 캘린더·provider 상태·알림 outbox, 1440×900 및 390×844 스크린샷과 horizontal overflow를 검증합니다.
 
 렌더 검증 산출물은 [`artifacts/screenshots/final-desktop-1440x900.png`](../artifacts/screenshots/final-desktop-1440x900.png), [`artifacts/screenshots/final-mobile-390x844.png`](../artifacts/screenshots/final-mobile-390x844.png)입니다.
 

@@ -527,6 +527,19 @@ async function run() {
     // Capture exact viewport screenshots from the browser, after returning to a clean demo state.
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.selectedEventId === "event-interview");
+    assertEqual(await evaluate(`document.querySelectorAll("#month-calendar .month-cell").length`), 32, "September monthly calendar cells");
+    assert((await text("#month-calendar")).includes("면접"), "monthly calendar interview marker");
+    await keyboardActivate("#calendar-connections-panel > summary");
+    assert((await text("#calendar-connections")).includes("서버 설정 필요"), "Google unconfigured state");
+    await click("[data-google-outcome=success]");
+    await waitState(next => next?.calendarConnections?.google?.state === "synced");
+    await keyboardActivate("#notification-panel > summary");
+    await click("#notification-consent");
+    await click("#notification-form button[type=submit]");
+    await waitState(next => next?.notifications?.some(item => item.status === "scheduled"));
+    assert((await text("#notification-outbox")).includes("예약됨"), "notification outbox scheduled state");
+    assertEqual(await evaluate(`localStorage.getItem("calenfit-ai-session-config")`), null, "AI settings do not use localStorage");
+    record("monthly calendar, provider states, and notification outbox");
     await evaluate(`document.querySelectorAll(".rail-disclosure").forEach(item => { item.open = false; })`);
     await setDevice(1440, 900, false);
     await evaluate(`window.scrollTo(0, 0)`);
@@ -549,7 +562,10 @@ async function run() {
     if (browser) {
       try { await browser.pageSend("Browser.close"); } catch {}
       try { browser.chrome.kill("SIGTERM"); } catch {}
-      await rm(browser.profileRoot, { recursive: true, force: true });
+      for (let attempt = 0; attempt < 8; attempt += 1) {
+        try { await rm(browser.profileRoot, { recursive: true, force: true }); break; }
+        catch (error) { if (error.code !== "ENOTEMPTY") throw error; await sleep(100); }
+      }
     }
     await rm(tempRoot, { recursive: true, force: true });
     await new Promise(resolvePromise => server.close(() => resolvePromise()));

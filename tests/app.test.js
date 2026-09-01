@@ -6,6 +6,9 @@ const {
   buildTasks, evaluateRecovery, seedState, validateState, loadState, saveState, resetState,
   setTaskCompletion, createEvent, updateEvent, deleteEvent, addEvidence,
   policyStatusLabel, safeUrl,
+  CalendarProviderAdapter, GoogleCalendarAdapter, IcsImportAdapter, CalenfitCalendarAdapter,
+  AIAnalysisAdapter, LocalSafeAIAnalysisAdapter, NotificationAdapters, scheduleNotification,
+  buildNotificationPayload, DEMO_PHONE,
 } = require('../app.js');
 const store = (initial = {}) => { const data = new Map(Object.entries(initial)); return { getItem: key => data.has(key) ? data.get(key) : null, setItem: (key, value) => data.set(key, String(value)), removeItem: key => data.delete(key), data }; };
 const throwingStore = () => ({ getItem: () => { throw new Error('security'); }, setItem: () => { throw new Error('quota'); }, removeItem: () => {} });
@@ -137,4 +140,23 @@ assert.equal(SEED_POLICIES.find(policy => policy.id === 'exam-support').applicat
 assert.equal(safeUrl('https://apply.jobaba.net/'), 'https://apply.jobaba.net/');
 assert.equal(safeUrl('https://evil.example/phish'), '');
 
-console.log('app logic tests: 82 passed');
+assert.deepEqual(CalendarProviderAdapter.required, ['getStatus', 'connect', 'sync']);
+assert.equal(GoogleCalendarAdapter.getStatus({ oauthConfigured: false }).state, 'not-configured');
+assert.equal(GoogleCalendarAdapter.sync('success').state, 'synced');
+assert.equal(GoogleCalendarAdapter.sync('denied').state, 'denied');
+assert.equal(CalenfitCalendarAdapter.getStatus().state, 'synced');
+assert.deepEqual(IcsImportAdapter.parse(ics)[0].date, '2026-09-05');
+assert.deepEqual(AIAnalysisAdapter.allowedInput, ['title', 'description', 'startTime']);
+assert.equal(LocalSafeAIAnalysisAdapter.analyze({ title: '모의 시험', description: '응시' }).type, 'exam');
+const notificationState = seedState();
+const blocked = scheduleNotification(notificationState, { channel: 'sms', offset: 3, consent: false });
+assert.equal(blocked.status, 'blocked');
+assert.match(blocked.reason, /동의/);
+const scheduled = scheduleNotification(notificationState, { channel: 'web', offset: 1, consent: true });
+assert.equal(scheduled.status, 'scheduled');
+assert.equal(scheduled.payload.phone, undefined);
+assert.equal(scheduleNotification(notificationState, { channel: 'kakao', offset: 0, consent: true }).status, 'blocked');
+assert.equal(buildNotificationPayload(notificationState.events[0], 3, 'sms').phone, DEMO_PHONE);
+assert.equal(JSON.stringify(notificationState).includes('010-****-0426'), true);
+
+console.log('app logic tests: 94 passed');
