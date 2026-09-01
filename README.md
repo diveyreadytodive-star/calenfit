@@ -4,8 +4,9 @@
 
 경기도 거주 미취업 청년을 위한 로그인 없는 정적 데모입니다. 면접·자격시험 일정을 분류하고, 연결 가능한 정책과 증빙 확보 행동을 안내합니다. 화면의 프로필과 일정은 모두 가상 데이터이며 최종 자격·예산·정책 유효성을 확정하지 않습니다.
 
-- 공개 데모: https://diveyreadytodive-star.github.io/calenfit/
 - GitHub: https://github.com/diveyreadytodive-star/calenfit
+
+현재 공개 배포는 비활성화되어 있습니다. 데모는 로컬 정적 서버에서 실행합니다.
 
 ## 실행
 
