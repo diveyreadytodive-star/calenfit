@@ -329,6 +329,7 @@ async function run() {
     // B: create, edit, complete a task, select recovery alternatives, attach metadata, delete.
     await keyboardActivate("#reset-demo");
     await waitState(current => current?.events?.length === 2);
+    await keyboardActivate("#quick-add-panel > summary");
     await fill("#event-title", "신규 핀테크 면접");
     await fill("#event-date", "2026-09-12");
     await fill("#event-description", "온라인 면접 일정");
@@ -366,6 +367,7 @@ async function run() {
     assert((await text("#app-message")).includes("10MiB"), "oversized evidence error is not announced in the global message area");
     await capture("scenario-b-recovery", "#recovery-panel");
     record("B event add/edit/delete flow and evidence metadata/limit");
+    await evaluate(`document.querySelector("#quick-add-panel").open = false`);
 
     // C: state survives reload, then deletion removes linked task/evidence state.
     await reload();
@@ -386,6 +388,7 @@ async function run() {
     // D: invalid ICS is rejected; valid ICS previews and imports a real event.
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next.selectedEventId === "event-interview");
+    await keyboardActivate("#calendar-import-panel > summary");
     const invalidIcs = join(tempRoot, "invalid.ics");
     await writeFile(invalidIcs, "BEGIN:VCALENDAR\nBEGIN:VEVENT\nSUMMARY:제목만 있음\nEND:VEVENT\nEND:VCALENDAR", "utf8");
     await setFile("#ics-upload", invalidIcs);
@@ -401,6 +404,7 @@ async function run() {
     assertEqual(await visible("#ics-error"), false, "successful ICS retry left the prior error visible");
     await capture("ics-retry-success", "#event-detail");
     record("valid ICS retry clears the prior invalid-ICS error");
+    await evaluate(`document.querySelector("#calendar-import-panel").open = false`);
 
     // Exam-specific UI has a different task plan, recovery model, and policy CTA.
     await keyboardActivate("#reset-demo");
@@ -481,6 +485,7 @@ async function run() {
     assertEqual(current.events.length, 2, "corrupt localStorage did not recover to seed events");
     assert((current.error || "").includes("저장"), "corrupt localStorage recovery was not announced");
     assertEqual(await evaluate(`localStorage.getItem(${json(unrelatedKey)})`), "keep-me", "unrelated localStorage key was lost during recovery");
+    await keyboardActivate("#quick-add-panel > summary");
     await fill("#event-title", '<img src=x onerror="window.__xss=1"> 안전 테스트');
     await fill("#event-date", "2026-09-20");
     await keyboardActivate("#event-form button[type=submit]");
@@ -514,11 +519,16 @@ async function run() {
     // Capture exact viewport screenshots from the browser, after returning to a clean demo state.
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.selectedEventId === "event-interview");
+    await evaluate(`document.querySelectorAll(".rail-disclosure").forEach(item => { item.open = false; })`);
     await setDevice(1440, 900, false);
+    await evaluate(`window.scrollTo(0, 0)`);
+    await sleep(120);
     const desktopShot = await pageSend("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
     await mkdir(SCREENSHOT_ROOT, { recursive: true });
     await writeFile(join(SCREENSHOT_ROOT, "final-desktop-1440x900.png"), Buffer.from(desktopShot.data, "base64"));
     await setDevice(390, 844, true);
+    await evaluate(`window.scrollTo(0, 0)`);
+    await sleep(120);
     const mobileShot = await pageSend("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
     await writeFile(join(SCREENSHOT_ROOT, "final-mobile-390x844.png"), Buffer.from(mobileShot.data, "base64"));
     record("true desktop/mobile screenshots with no horizontal overflow");
