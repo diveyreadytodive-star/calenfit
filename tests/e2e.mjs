@@ -508,6 +508,14 @@ async function run() {
     await waitState(next => next?.events?.find(event => event.id === "event-interview")?.recovery?.alternatives?.length === 2);
     record("keyboard recovery primary and alternative controls");
 
+    // The compact month calendar can expand the connected calendar without losing keyboard escape.
+    await keyboardActivate("#expand-calendar");
+    assertEqual(await evaluate(`document.body.classList.contains("calendar-focus-mode")`), true, "full calendar view did not open");
+    assertEqual(await evaluate(`document.querySelector("#expand-calendar")?.getAttribute("aria-expanded")`), "true", "full calendar control did not expose expanded state");
+    await key("Escape");
+    assertEqual(await evaluate(`document.body.classList.contains("calendar-focus-mode")`), false, "Escape did not return to dashboard view");
+    record("month calendar expands and returns with Escape");
+
     // Keyboard focus basics: skip link can receive focus and Tab advances into the form.
     await evaluate(`document.querySelector(".skip-link")?.focus()`);
     assertEqual(await evaluate(`document.activeElement?.classList.contains("skip-link")`), true, "skip link is not keyboard focusable");

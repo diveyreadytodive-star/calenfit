@@ -148,6 +148,82 @@
               <div id="event-detail" aria-live="polite"></div>
             </section>
 
+            <section id="task-panel" class="panel task-panel inspector-panel" aria-labelledby="tasks-heading">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">TO-DO</p>
+                  <h2 id="tasks-heading">오늘 할 일</h2>
+                </div>
+                <span class="badge warm">기한 기반</span>
+              </div>
+              <div id="task-list" class="task-list compact" aria-live="polite"></div>
+              <div id="task-empty" class="empty-state" hidden>
+                선택한 일정에 예정된 행동이 없습니다.
+              </div>
+            </section>
+
+            <section class="panel inspector-panel mini-calendar-panel" aria-labelledby="mini-calendar-heading">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">MONTH</p>
+                  <h2 id="mini-calendar-heading">9월 한 달</h2>
+                </div>
+                <button
+                  id="expand-calendar"
+                  class="badge outline mini-calendar-link"
+                  type="button"
+                  aria-controls="calendar-panel"
+                  aria-expanded="false"
+                >
+                  전체 달력 보기
+                </button>
+              </div>
+              <div class="mini-month" aria-label="2026년 9월 미니 달력">
+                <span class="mini-month-day header">S</span>
+                <span class="mini-month-day header">M</span>
+                <span class="mini-month-day header">T</span>
+                <span class="mini-month-day header">W</span>
+                <span class="mini-month-day header">T</span>
+                <span class="mini-month-day header">F</span>
+                <span class="mini-month-day header">S</span>
+                <span class="mini-month-day muted">30</span>
+                <span class="mini-month-day selected">1</span>
+                <span class="mini-month-day">2</span>
+                <span class="mini-month-day">3</span>
+                <span class="mini-month-day event">4</span>
+                <span class="mini-month-day event">5</span>
+                <span class="mini-month-day">6</span>
+                <span class="mini-month-day event">7</span>
+                <span class="mini-month-day">8</span>
+                <span class="mini-month-day">9</span>
+                <span class="mini-month-day">10</span>
+                <span class="mini-month-day">11</span>
+                <span class="mini-month-day">12</span>
+                <span class="mini-month-day">13</span>
+                <span class="mini-month-day">14</span>
+                <span class="mini-month-day">15</span>
+                <span class="mini-month-day">16</span>
+                <span class="mini-month-day">17</span>
+                <span class="mini-month-day">18</span>
+                <span class="mini-month-day">19</span>
+                <span class="mini-month-day">20</span>
+                <span class="mini-month-day">21</span>
+                <span class="mini-month-day">22</span>
+                <span class="mini-month-day">23</span>
+                <span class="mini-month-day">24</span>
+                <span class="mini-month-day">25</span>
+                <span class="mini-month-day">26</span>
+                <span class="mini-month-day">27</span>
+                <span class="mini-month-day">28</span>
+                <span class="mini-month-day">29</span>
+                <span class="mini-month-day">30</span>
+                <span class="mini-month-day muted">1</span>
+                <span class="mini-month-day muted">2</span>
+                <span class="mini-month-day muted">3</span>
+                <span class="mini-month-day muted">4</span>
+              </div>
+            </section>
+
             <section
               id="recovery-section"
               class="panel inspector-panel"
@@ -218,20 +294,6 @@
         </div>
 
         <section id="dashboard-metrics" class="metrics-grid" aria-label="대시보드 요약"></section>
-
-        <section id="task-panel" class="panel task-panel" aria-labelledby="tasks-heading">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">NEXT ACTIONS</p>
-              <h2 id="tasks-heading">행동 타임라인</h2>
-            </div>
-            <span class="badge warm">기한 기반</span>
-          </div>
-          <div id="task-list" class="task-list" aria-live="polite"></div>
-          <div id="task-empty" class="empty-state" hidden>
-            선택한 일정에 예정된 행동이 없습니다.
-          </div>
-        </section>
 
         <footer class="footer-note">
           공식 공고가 바뀔 수 있으므로 신청 전 출처 링크를 다시 확인하세요.

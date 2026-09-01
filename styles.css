@@ -359,7 +359,7 @@ textarea:focus-visible {
 
 .studio-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.9fr) minmax(244px, 0.52fr);
+  grid-template-columns: minmax(0, 1.72fr) minmax(256px, 0.48fr);
   gap: 18px;
   align-items: start;
 }
@@ -367,7 +367,7 @@ textarea:focus-visible {
 .calendar-panel {
   padding: 18px;
   overflow: hidden;
-  min-height: 620px;
+  min-height: 600px;
 }
 
 .ai-insight {
@@ -887,7 +887,7 @@ button:disabled {
 
 .task-panel {
   margin-top: 18px;
-  padding: 16px;
+  padding: 14px;
 }
 
 .task-list {
@@ -895,11 +895,38 @@ button:disabled {
   gap: 10px;
 }
 
+.task-list.compact {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.inspector-column > #task-panel {
+  order: -3;
+}
+
+.inspector-column > .mini-calendar-panel {
+  order: -2;
+}
+
 .task-card {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   padding: 12px 14px;
+}
+
+.task-list.compact .task-card {
+  align-items: center;
+  padding: 9px 11px;
+}
+
+.task-list.compact .task-card > span {
+  display: block;
+}
+
+.task-list.compact .task-body,
+.task-list.compact .task-meta {
+  display: none;
 }
 
 .task-card.overdue {
@@ -1126,6 +1153,84 @@ button:disabled {
 
 .controls-grid .ghost-button {
   min-width: 120px;
+}
+
+.mini-calendar-panel {
+  padding-top: 12px;
+}
+
+.mini-calendar-link {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+body.calendar-focus-mode .sidebar,
+body.calendar-focus-mode .app-bar,
+body.calendar-focus-mode .inspector-column,
+body.calendar-focus-mode .metrics-grid,
+body.calendar-focus-mode .footer-note {
+  display: none;
+}
+
+body.calendar-focus-mode .shell {
+  display: block;
+}
+
+body.calendar-focus-mode .content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 26px;
+}
+
+body.calendar-focus-mode .studio-grid {
+  display: block;
+}
+
+body.calendar-focus-mode .calendar-panel {
+  min-height: calc(100vh - 52px);
+}
+
+.mini-month {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.mini-month-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(20, 19, 16, 0.06);
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.mini-month-day.header {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.mini-month-day.selected {
+  background: rgba(39, 87, 216, 0.13);
+  border-color: rgba(39, 87, 216, 0.18);
+  color: var(--accent-strong);
+}
+
+.mini-month-day.event {
+  background: rgba(201, 130, 39, 0.13);
+  border-color: rgba(201, 130, 39, 0.18);
+}
+
+.mini-month-day.muted {
+  color: rgba(98, 92, 81, 0.55);
+  background: rgba(255, 255, 255, 0.54);
 }
 
 .mobile-dock {
