@@ -363,7 +363,7 @@ async function run() {
     await sleep(100);
     current = await state();
     assertEqual(current.evidenceFiles.length, 1, "oversized evidence was rejected");
-    assert((await text("#ics-error")).includes("10MiB"), "oversized evidence error is not announced");
+    assert((await text("#app-message")).includes("10MiB"), "oversized evidence error is not announced in the global message area");
     await capture("scenario-b-recovery", "#recovery-panel");
     record("B event add/edit/delete flow and evidence metadata/limit");
 
@@ -432,11 +432,15 @@ async function run() {
     await evaluate(`Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async () => { throw new Error("forced clipboard failure"); } } })`);
     await keyboardActivate("[data-copy-request]");
     await waitFor(() => text("[data-copy-status]").then(value => value.includes("직접 복사")), { message: "clipboard fallback status" });
+    assertEqual(await visible("#app-message"), true, "clipboard failure is not shown in the global message area");
+    assertEqual(await visible("#ics-error"), false, "clipboard failure leaked into the ICS error area");
     record("clipboard success and visible failure fallback");
 
     // Policy state changes must alter the CTA, and reset must restore the demo snapshot.
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length === 2 && next?.policies?.[0]?.status === "open");
+    assertEqual(await visible("#app-message"), false, "reset did not clear the global error message");
+    assertEqual(await visible("#ics-error"), false, "reset did not clear the ICS error message");
     assert((await text(".policy-card .cta-row .button-link")).includes("공식 신청 페이지"), "open policy CTA missing");
     await capture("scenario-d-policy-open", "#policy-cards");
     await keyboardSelect("#policy-state", 1);
