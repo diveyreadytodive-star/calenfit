@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {
-  STORAGE_KEY, SCHEMA_VERSION, MAX_EVIDENCE_BYTES, PROFILE, SEED_POLICIES,
+  STORAGE_KEY, SCHEMA_VERSION, MAX_EVIDENCE_BYTES, PROFILE, SEED_POLICIES, SEED_EVENTS,
   inferEventType, classifyEvent, normalizePolicy, parseICS, matchPolicies,
   buildTasks, evaluateRecovery, seedState, validateState, loadState, saveState, resetState,
   setTaskCompletion, createEvent, updateEvent, deleteEvent, addEvidence,
@@ -96,7 +96,7 @@ assert.equal(loadState(persistent).taskCompletion[interviewTasks[0].id], true);
 restored.policies[0].status = 'exhausted'; saveState(restored, persistent);
 assert.equal(loadState(persistent).policies[0].status, 'exhausted');
 assert.equal(loadState(store({ [STORAGE_KEY]: '{bad' })).error.includes('저장'), true);
-assert.equal(loadState(store({ [STORAGE_KEY]: JSON.stringify({ schemaVersion: 9 }) })).events.length, 2);
+assert.equal(loadState(store({ [STORAGE_KEY]: JSON.stringify({ schemaVersion: 9 }) })).events.length, 6);
 assert.equal(loadState(throwingStore()).error.includes('저장'), true);
 assert.throws(() => validateState({ ...seedState(), taskCompletion: null }), /호환/);
 const safeProfile = validateState({ ...seedState(), profile: null, policies: [{ id: 'interview-allowance' }] });
@@ -110,7 +110,7 @@ const sanitized = validateState({ ...seedState(), evidenceFiles: [
 assert.equal(sanitized.evidenceFiles.length, 1);
 assert.equal(sanitized.evidenceFiles[0].hints.length, 2);
 const reset = resetState(persistent);
-assert.equal(reset.events.length, 2);
+assert.equal(reset.events.length, 6);
 assert.equal(persistent.data.has(STORAGE_KEY), true);
 
 const crud = seedState();
@@ -158,5 +158,10 @@ assert.equal(scheduled.payload.phone, undefined);
 assert.equal(scheduleNotification(notificationState, { channel: 'kakao', offset: 0, consent: true }).status, 'blocked');
 assert.equal(buildNotificationPayload(notificationState.events[0], 3, 'sms').phone, DEMO_PHONE);
 assert.equal(JSON.stringify(notificationState).includes('010-****-0426'), true);
+assert.equal(SEED_EVENTS.length, 6);
+assert.equal(SEED_EVENTS.find(event => event.id === 'event-exam').date, '2026-09-19');
+assert.equal(matchPolicies(SEED_EVENTS.find(event => event.id === 'event-basic-income'), initial.policies, PROFILE)[0].policy.id, 'hanam-basic-income');
+assert.equal(matchPolicies(SEED_EVENTS.find(event => event.id === 'event-intern'), initial.policies, PROFILE).some(item => item.policy.id === 'future-tomorrow-experience'), true);
+assert.equal(matchPolicies(SEED_EVENTS.find(event => event.id === 'event-savings'), initial.policies, PROFILE).some(item => item.policy.id === 'youth-hope-savings'), true);
 
 console.log('app logic tests: 94 passed');
