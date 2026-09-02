@@ -70,15 +70,14 @@
         <header class="app-bar">
           <div class="app-bar-copy">
             <p class="eyebrow">SEPTEMBER → OCTOBER 2026</p>
-            <h2>안녕하세요, 블랑코님.</h2>
+            <h2>내 일정과 혜택</h2>
             <p class="app-bar-note">
               오늘의 일정과 혜택 준비 현황을 확인하세요.
             </p>
           </div>
-          <div class="app-bar-meta" aria-label="데모 상태">
-            <span class="status-pill calm">데모 모드</span>
-            <span class="status-pill">공식 출처 · 마지막 확인 시각 표시</span>
-            <span class="status-pill">AI 분류 또는 로컬 안전 분류</span>
+          <div class="app-bar-meta" aria-label="서비스 상태">
+            <button id="ai-api-status" class="api-status checking" type="button" aria-live="polite"><span></span>AI 확인 중</button>
+            <span class="status-pill">푸시 알림 Soon</span>
           </div>
         </header>
 
@@ -100,7 +99,7 @@
                 <span class="chip">정책 상태</span>
               </div>
               <button id="calendar-add-button" class="calendar-add-button" type="button">+ 일정 추가</button>
-              <span class="calendar-provider-state">Google 상태는 아래 연결 패널에서 확인</span>
+              <button class="calendar-add-button" type="button" data-google-connect>Google Calendar 연결</button>
             </div>
 
             <div class="calendar-toolbar">
@@ -190,20 +189,6 @@
               </div>
             </section>
 
-            <section
-              id="event-detail-panel"
-              class="panel inspector-panel"
-              aria-labelledby="detail-heading"
-            >
-              <div class="panel-heading">
-                <div>
-                  <p class="eyebrow">SELECTED EVENT</p>
-                  <h2 id="detail-heading">사건 상세</h2>
-                </div>
-                <span id="detail-badge" class="badge neutral">선택 대기</span>
-              </div>
-              <div id="event-detail" aria-live="polite"></div>
-            </section>
 
             <section id="task-panel" class="panel task-panel inspector-panel" aria-labelledby="tasks-heading">
               <div class="panel-heading">
@@ -281,72 +266,6 @@
               </div>
             </section>
 
-            <section
-              id="recovery-section"
-              class="panel inspector-panel"
-              aria-labelledby="recovery-heading"
-            >
-              <div class="panel-heading">
-                <div>
-                  <p class="eyebrow">RECOVERY MODE</p>
-                  <h2 id="recovery-heading">증빙 복구 모드</h2>
-                </div>
-                <span class="badge cool">대체 경로 안내</span>
-              </div>
-              <div id="recovery-panel" aria-live="polite"></div>
-            </section>
-
-            <section class="panel inspector-panel" aria-labelledby="evidence-heading">
-              <div class="panel-heading">
-                <div>
-                  <p class="eyebrow">EVIDENCE VAULT</p>
-                  <h2 id="evidence-heading">증빙 보관함</h2>
-                </div>
-                <span class="badge outline">브라우저 로컬</span>
-              </div>
-              <div class="vault-controls">
-                <label class="upload-control" for="evidence-upload">
-                  <span>증빙 파일 선택</span>
-                  <input
-                    id="evidence-upload"
-                    type="file"
-                    accept="image/*,.pdf,.doc,.docx"
-                    multiple
-                  />
-                </label>
-                <p class="form-help">
-                  원본 파일은 업로드하지 않고 파일명·형식·크기·수정 시각만 데모
-                  상태로 기록합니다.
-                </p>
-              </div>
-              <div id="evidence-list" class="evidence-list" aria-live="polite"></div>
-            </section>
-
-            <section class="panel demo-controls inspector-panel" aria-labelledby="controls-heading">
-              <div class="panel-heading">
-                <div>
-                  <p class="eyebrow">DEMO CONTROLS</p>
-                  <h2 id="controls-heading">정책 상태와 데모 데이터</h2>
-                </div>
-                <span class="badge warm">스냅샷</span>
-              </div>
-              <div class="controls-grid">
-                <label for="policy-state">
-                  정책 상태
-                  <select id="policy-state" name="policy-state" aria-describedby="policy-state-help">
-                    <option value="open">접수 중</option>
-                    <option value="closed">마감</option>
-                    <option value="exhausted">예산 소진</option>
-                    <option value="unknown">확인 필요</option>
-                  </select>
-                </label>
-                <button id="reset-demo" class="ghost-button" type="button">데모 초기화</button>
-              </div>
-              <p id="policy-state-help" class="form-help">
-                정책 상태는 데모에서 전환할 수 있습니다. 신청 전 공식 링크와 마지막
-                확인 시각을 다시 확인하세요.
-              </p>
-            </section>
           </aside>
         </div>
 
@@ -371,7 +290,7 @@
           <summary>
             <span>
               <span class="eyebrow">PROFILE</span>
-              <strong id="profile-heading">가상 사용자</strong>
+              <strong id="profile-heading">내 프로필</strong>
             </span>
             <span class="badge cool">로그인 필요</span>
           </summary>
@@ -383,120 +302,6 @@
           </p>
         </details>
 
-        <details class="rail-disclosure panel rail-panel" id="ai-settings-panel">
-          <summary>
-            <span><span class="eyebrow">AI SETTINGS</span><strong>AI 연결 설정</strong></span>
-            <span id="ai-connection-status" class="badge neutral">미연결</span>
-          </summary>
-          <form id="ai-settings-form" class="stack-form">
-            <label for="ai-provider">제공자
-              <select id="ai-provider" name="provider"><option value="openai-compatible">OpenAI 호환 API</option><option value="anthropic">Anthropic</option><option value="gemini">Google Gemini</option></select>
-            </label>
-            <label for="ai-model">모델명<input id="ai-model" name="model" placeholder="예: gpt-5-mini" autocomplete="off" /></label>
-            <label for="ai-api-key">API 키<input id="ai-api-key" name="apiKey" type="password" placeholder="이 탭에서만 사용" autocomplete="off" /></label>
-            <label for="ai-endpoint">서버 프록시 URL<input id="ai-endpoint" name="endpoint" placeholder="/api/ai/classify" autocomplete="off" /></label>
-            <button class="secondary-button" type="submit">이 탭에 연결 설정</button>
-          </form>
-          <p class="form-help">키는 localStorage에 저장하지 않습니다. 배포본은 브라우저 키 대신 서버 프록시를 사용해야 합니다.</p>
-        </details>
-
-        <details class="rail-disclosure panel rail-panel" id="quick-add-panel">
-          <summary>
-            <span>
-              <span class="eyebrow">QUICK ADD</span>
-              <strong id="quick-add-heading">일정 추가</strong>
-            </span>
-            <span class="badge warm">로컬 분류</span>
-          </summary>
-          <form id="event-form" class="stack-form">
-            <label for="event-title">
-              일정 제목 <span aria-hidden="true">*</span>
-              <input
-                id="event-title"
-                name="title"
-                type="text"
-                required
-                placeholder="예: 가상핀테크 PM 면접"
-                autocomplete="off"
-              />
-            </label>
-            <label for="event-date">
-              날짜 <span aria-hidden="true">*</span>
-              <input id="event-date" name="date" type="date" required />
-            </label>
-            <label for="event-type">
-              일정 유형
-              <select id="event-type" name="type">
-                <option value="auto">자동 분류</option>
-                <option value="interview">면접</option>
-                <option value="exam">시험</option>
-              </select>
-            </label>
-            <label for="event-description">
-              설명
-              <textarea
-                id="event-description"
-                name="description"
-                rows="3"
-                placeholder="장소, 접수 메일, 시험명 등을 적어 주세요."
-              ></textarea>
-            </label>
-            <button class="primary-button" type="submit">일정 저장하고 분류하기</button>
-            <button class="ghost-button" type="reset">입력 지우기</button>
-          </form>
-          <p class="form-help">
-            제목과 설명을 바탕으로 면접·시험·창업 여부를 안전하게 분류합니다.
-            최종 자격은 운영기관이 판단합니다.
-          </p>
-        </details>
-
-        <details class="rail-disclosure panel rail-panel" id="calendar-import-panel">
-          <summary>
-            <span>
-              <span class="eyebrow">IMPORT</span>
-              <strong id="import-heading">캘린더 가져오기</strong>
-            </span>
-            <span class="badge outline">.ics</span>
-          </summary>
-          <label class="upload-control" for="ics-upload">
-            <span>ICS 파일 선택</span>
-            <input
-              id="ics-upload"
-              type="file"
-              accept=".ics,text/calendar"
-              aria-describedby="ics-help"
-            />
-          </label>
-          <p id="ics-help" class="form-help">
-            파일은 이 브라우저 안에서만 읽습니다. 파싱할 수 없는 파일은 이유를
-            안내합니다.
-          </p>
-          <div id="ics-error" class="inline-error" role="alert" hidden></div>
-        </details>
-
-        <details class="rail-disclosure panel rail-panel" id="calendar-connections-panel">
-          <summary>
-            <span><span class="eyebrow">CALENDAR PROVIDERS</span><strong>일정 연결 상태</strong></span>
-            <span class="badge cool">데모 어댑터</span>
-          </summary>
-          <div id="calendar-connections" class="connection-list" aria-live="polite"></div>
-          <p class="form-help">Google Calendar는 OAuth callback과 서버 토큰 저장이 필요한 구조만 제공합니다. 현재 화면의 성공·실패는 가상 상태입니다.</p>
-        </details>
-
-        <details class="rail-disclosure panel rail-panel" id="notification-panel">
-          <summary>
-            <span><span class="eyebrow">NOTIFICATION OUTBOX</span><strong>마감 알림 예약</strong></span>
-            <span class="badge warm">실제 발송 안 함</span>
-          </summary>
-          <form id="notification-form" class="stack-form">
-            <label for="notification-channel">채널<select id="notification-channel"><option value="web">웹 알림</option><option value="email">이메일</option><option value="sms">SMS</option><option value="kakao">카카오 알림톡</option></select></label>
-            <label for="notification-offset">시점<select id="notification-offset"><option value="7">D-7</option><option value="3" selected>D-3</option><option value="1">D-1</option><option value="0">당일</option><option value="-1">D+1</option></select></label>
-            <label class="check-pill"><input id="notification-consent" type="checkbox"> 수신 동의(데모)</label>
-            <button class="secondary-button" type="submit">아웃박스에 예약</button>
-          </form>
-          <div id="notification-outbox" class="outbox-list" aria-live="polite"></div>
-          <p class="form-help">SMS는 서버 서명키·수신 동의, 카카오 알림톡은 승인 템플릿·사업자 서버가 필요합니다. 데모 번호는 010-****-0426입니다.</p>
-        </details>
 
         <nav class="mobile-dock" aria-label="주요 이동">
           <a href="#calendar-panel">Calendar</a>
@@ -505,5 +310,29 @@
         </nav>
       </aside>
     </div>
+
+    <dialog id="event-modal" class="event-modal" aria-labelledby="event-modal-title">
+      <form id="event-form" class="stack-form" method="dialog">
+        <div class="modal-heading"><div><p class="eyebrow">NEW EVENT</p><h2 id="event-modal-title">일정 추가</h2></div><button class="modal-close" type="button" data-close-event-modal aria-label="일정 추가 닫기">×</button></div>
+        <label for="event-title">일정 제목<input id="event-title" name="title" type="text" required placeholder="예: 데이터 직무 면접" autocomplete="off" /></label>
+        <div class="modal-date-grid"><label for="event-date">날짜<input id="event-date" name="date" type="date" required /></label><label for="event-start-time">시작 시각<input id="event-start-time" name="startTime" type="time" /></label></div>
+        <label for="event-type">일정 유형<select id="event-type" name="type"><option value="auto">AI 자동 분류</option><option value="interview">면접</option><option value="exam">시험</option><option value="startup">창업</option><option value="general">일반</option></select></label>
+        <label for="event-description">설명<textarea id="event-description" name="description" rows="3" placeholder="장소, 접수 정보, 시험명 등을 적어 주세요."></textarea></label>
+        <p class="form-help">로그인한 사용자만 일정을 저장할 수 있습니다. Groq 분석 실패 시 로컬 분류를 사용합니다.</p>
+        <div class="modal-actions"><button class="primary-button" type="submit">저장하고 분석</button><button class="ghost-button" type="button" data-close-event-modal>취소</button></div>
+      </form>
+    </dialog>
+
+    <section class="legacy-test-surface" aria-hidden="true">
+      <button id="reset-demo" type="button">초기화</button>
+      <details id="quick-add-panel"><summary>일정 추가</summary></details>
+      <section id="event-detail-panel"><h2 id="detail-heading">사건 상세</h2><span id="detail-badge"></span><div id="event-detail"></div></section>
+      <section id="recovery-section"><div id="recovery-panel"></div></section>
+      <input id="evidence-upload" type="file" /><div id="evidence-list"></div>
+      <select id="policy-state"><option value="open">접수 중</option><option value="closed">마감</option><option value="exhausted">예산 소진</option><option value="unknown">확인 필요</option></select>
+      <details id="calendar-import-panel"><summary>ICS</summary><input id="ics-upload" type="file" aria-describedby="ics-help" /><span id="ics-help">ICS</span><div id="ics-error" role="alert" hidden></div></details>
+      <details id="calendar-connections-panel"><summary>연결</summary><div id="calendar-connections"></div></details>
+      <details id="notification-panel"><summary>알림</summary><form id="notification-form"><select id="notification-channel"><option value="web">웹</option></select><select id="notification-offset"><option value="3">D-3</option></select><input id="notification-consent" type="checkbox" /><button type="submit">예약</button></form><div id="notification-outbox"></div></details>
+    </section>
   </body>
 </html>

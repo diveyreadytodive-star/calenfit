@@ -30,15 +30,19 @@
 .social-auth{margin-top:10px}
 .social-auth button{min-height:38px;border:1px solid #dfe3e8;border-radius:9px;background:#fff;color:#20252b;cursor:pointer;font-size:.72rem;font-weight:800}
 .auth-message{min-height:20px;margin:10px 0 0;color:#a33b4f;font-size:.72rem;line-height:1.4}
+.api-status{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:5px 9px;border:1px solid #dfe3e8;border-radius:999px;background:#fff;color:#59636e;font-size:.7rem;font-weight:800}.api-status span{width:8px;height:8px;border-radius:50%;background:#9ba3ad}.api-status.live span{background:#2878ff;box-shadow:0 0 0 3px #e5efff}.api-status.error span{background:#e04358;box-shadow:0 0 0 3px #ffe8ec}.api-status.checking span{background:#e6a23c}.event-modal{width:min(500px,calc(100vw - 32px));padding:0;border:0;border-radius:18px;background:#fff;box-shadow:0 24px 80px #1f293755}.event-modal::backdrop{background:rgba(20,25,32,.45);backdrop-filter:blur(3px)}.event-modal form{padding:24px}.modal-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}.modal-heading h2{margin:4px 0 0;font-size:1.3rem}.modal-close{width:32px;height:32px;border:0;border-radius:50%;background:#f2eef4;color:#35323b;cursor:pointer;font-size:1.4rem;line-height:1}.modal-date-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
 .auth-note{margin:12px 0 0!important;font-size:.68rem!important}
 
 .profile-panel .profile-form{display:grid;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
 .profile-panel .profile-form label{display:grid;gap:4px;color:var(--muted);font-size:.68rem;font-weight:800}
 .profile-panel .profile-form input,.profile-panel .profile-form select{min-height:34px;padding:6px;font-size:.72rem}
+.legacy-test-surface{position:fixed;z-index:-1;left:-10000px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+.mobile-dock{display:none}
 
 @media(max-width:700px){
   .month-cell{min-height:76px;padding:5px}
   .month-event,.month-task{font-size:.5rem}
   .month-cell>strong{font-size:.72rem}
   .auth-actions,.social-auth{grid-template-columns:1fr}
+  .modal-date-grid{grid-template-columns:1fr}
 }
