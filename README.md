@@ -44,9 +44,10 @@ node server.mjs
 
 ```sh
 node tests/app.test.js
+node tests/server.test.mjs
 ```
 
-결과: `app logic tests: 94 passed` (Node의 `--localstorage-file` 환경 경고가 있어도 테스트 결과에는 영향이 없습니다).
+결과: `app logic tests: 94 passed`, `server integration tests: 8 passed` (Node의 `--localstorage-file` 환경 경고가 있어도 테스트 결과에는 영향이 없습니다).
 
 브라우저 E2E:
 
