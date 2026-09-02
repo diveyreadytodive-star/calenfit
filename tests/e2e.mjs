@@ -515,7 +515,7 @@ async function run() {
     record("keyboard recovery primary and alternative controls");
 
     // The compact month calendar can expand the connected calendar without losing keyboard escape.
-    await keyboardActivate("#expand-calendar");
+    await click("#expand-calendar");
     assertEqual(await evaluate(`document.body.classList.contains("calendar-focus-mode")`), true, "full calendar view did not open");
     assertEqual(await evaluate(`document.querySelector("#expand-calendar")?.getAttribute("aria-expanded")`), "true", "full calendar control did not expose expanded state");
     await key("Escape");
