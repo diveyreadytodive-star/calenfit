@@ -20,14 +20,14 @@
     <section id="landing-screen" class="landing-screen" aria-labelledby="landing-title">
       <header class="landing-nav">
         <a class="landing-logo" href="#landing-title" aria-label="캘린핏 홈">calenfit</a>
-        <button id="landing-demo-button" class="landing-nav-button" type="button">데모 시작</button>
+        <button id="landing-demo-button" class="landing-nav-button" type="button" onclick="window.openCalenfitAuth && window.openCalenfitAuth()">시작하기</button>
       </header>
       <div class="landing-copy">
         <p class="landing-kicker">CALENDAR BENEFIT AGENT</p>
         <h1 id="landing-title">AI가 내 일정을 읽고,<br />받을 혜택을 찾습니다.</h1>
         <p><strong>AI 캘린더 에이전트 캘린핏</strong>은 면접·시험·지원 마감 같은 일정 신호를 읽고,<br />놓치기 쉬운 지원금과 필요한 증빙 행동을 먼저 알려줍니다.</p>
         <div class="landing-actions">
-          <button id="landing-start-button" class="landing-primary" type="button">내 일정에서 혜택 찾기</button>
+          <button id="landing-start-button" class="landing-primary" type="button" onclick="window.openCalenfitAuth && window.openCalenfitAuth()">내 일정에서 혜택 찾기</button>
           <a class="landing-secondary" href="#landing-how">어떻게 작동하나요?</a>
         </div>
       </div>
@@ -54,7 +54,7 @@
         <p class="eyebrow">CALENFIT ACCOUNT</p>
         <h1 id="auth-title">내 일정에서<br />받을 혜택 찾기</h1>
         <p>로그인하면 맞춤 프로필과 캘린더가 연결됩니다. 로그인 전에는 개인 일정과 정책을 표시하지 않습니다.</p>
-        <form id="account-auth-form" class="auth-form">
+        <form id="account-auth-form" class="auth-form" onsubmit="return window.submitCalenfitAuth && window.submitCalenfitAuth(event)">
           <label>이메일<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
           <label>비밀번호<input name="password" type="password" minlength="10" autocomplete="current-password" placeholder="10자 이상" required /></label>
           <div class="auth-actions"><button type="submit" name="action" value="login" data-auth-action="login" class="primary-button">로그인</button><button type="submit" name="action" value="signup" data-auth-action="signup" class="secondary-button">회원가입</button></div>

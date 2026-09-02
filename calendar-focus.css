@@ -21,6 +21,7 @@
 
 .auth-screen{position:fixed;z-index:60;inset:0;display:grid;place-items:center;padding:24px;background:rgba(25,25,25,.28);backdrop-filter:blur(3px)}
 .auth-screen[hidden]{display:none!important}
+body.auth-anonymous .shell{visibility:hidden}
 .auth-card{width:min(430px,100%);padding:34px;border:1px solid rgba(255,255,255,.75);border-radius:22px;background:rgba(255,255,255,.96);box-shadow:0 22px 60px #1f293755}
 .auth-card h1{margin:10px 0 12px;font-size:clamp(2rem,5vw,3.3rem);line-height:1.05;letter-spacing:-.08em}
 .auth-card>p{color:#59636e;font-size:.82rem;line-height:1.55}
