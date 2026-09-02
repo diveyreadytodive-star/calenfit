@@ -2,7 +2,7 @@
 
 ## Browser/server boundary
 
-정적 브라우저 데모는 가상 사용자·가상 일정, 자체 캘린더 CRUD, ICS local parse/preview, 로컬 AI fallback, 정책 snapshot/rules, 증빙 메타데이터, 비발송 알림 outbox만 담당한다. 외부 계정 변경, credential, token, 실제 발송은 서버 경계다.
+`server.mjs`와 정적 브라우저 UI로 구성된 로컬 MVP다. 비로그인 브라우저는 빈 상태만 렌더링하고, 서버 세션이 확인된 뒤에만 해당 사용자의 profile/events를 hydrate한다. 브라우저는 자체 캘린더 CRUD, ICS local parse/preview, 로컬 AI fallback, 정책 snapshot/rules, 증빙 메타데이터, 비발송 알림 outbox를 담당한다. 서버는 계정, 세션, 프로필, Google OAuth/Calendar sync, Groq proxy를 담당한다.
 
 ```text
 CalendarProviderAdapter -> Calenfit local | ICS | Google OAuth placeholder

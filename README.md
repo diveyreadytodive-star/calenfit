@@ -2,11 +2,11 @@
 
 “캘린더를 잘 쓰면, 돈이 나온다.”
 
-경기도 하남시에 사는 2001년생 대학교 4학년·취업준비생을 가정한 로그인 없는 정적 데모입니다. 면접·자격시험·청년기본소득·청년 일경험·금융상품 확인 일정을 분류하고, 연결 가능한 정책과 증빙 확보 행동을 안내합니다. 화면의 프로필과 일정은 모두 가상 데이터이며 최종 자격·예산·정책 유효성을 확정하지 않습니다.
+계정으로 로그인한 사용자의 프로필과 캘린더를 기준으로 면접·자격시험·청년기본소득·청년 일경험·금융상품 확인 일정을 분류하고, 연결 가능한 정책과 증빙 확보 행동을 안내하는 MVP입니다. 로그인 전에는 개인 프로필·일정·정책을 표시하지 않으며, 첫 가입 후 사용자가 직접 프로필을 작성합니다.
 
 - GitHub: https://github.com/diveyreadytodive-star/calenfit
 
-현재 공개 배포는 비활성화되어 있습니다. 데모는 로컬 정적 서버에서 실행합니다.
+현재 공개 배포는 비활성화되어 있습니다. MVP는 로컬 Node 서버에서 실행합니다.
 
 ## 실행
 
@@ -47,7 +47,7 @@ node tests/app.test.js
 node tests/server.test.mjs
 ```
 
-결과: `app logic tests: 94 passed`, `server integration tests: 8 passed` (Node의 `--localstorage-file` 환경 경고가 있어도 테스트 결과에는 영향이 없습니다).
+결과: `app logic tests: 94 passed`, `server integration tests: 10 passed` (Node의 `--localstorage-file` 환경 경고가 있어도 테스트 결과에는 영향이 없습니다).
 
 브라우저 E2E:
 

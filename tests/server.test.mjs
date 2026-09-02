@@ -16,9 +16,12 @@ try {
   const profile = await request("/api/profile", { method: "POST", body: JSON.stringify({ birthYear: 2001, residence: "경기도 하남시", status: "학생", education: "대학교 4학년", goal: "데이터 직무" }) });
   assert.equal(profile.body.profile.goal, "데이터 직무");
   assert.equal((await request("/api/auth/session")).body.user.profile.status, "학생");
+  const event = await request("/api/events", { method: "POST", body: JSON.stringify({ title: "서버 저장 면접", date: "2026-09-20", description: "직접 추가", type: "interview" }) });
+  assert.equal(event.response.status, 201);
+  assert.equal((await request("/api/events")).body.events.length, 1);
   assert.equal((await request("/api/calendar/google/connect")).response.status, 503);
   assert.equal((await request("/api/ai/analyze", { method: "POST", body: JSON.stringify({ input: { title: "시험", description: "응시", startTime: "2026-09-19T09:00:00+09:00" } }) })).response.status, 503);
   assert.equal((await request("/api/auth/logout", { method: "POST" })).body.ok, true);
   assert.equal((await request("/api/auth/session")).response.status, 401);
-  console.log("server integration tests: 8 passed");
+  console.log("server integration tests: 10 passed");
 } finally { child.kill("SIGTERM"); }

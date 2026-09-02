@@ -43,3 +43,12 @@ node --check app.js
 - Grok proxy request sends only title/description/startTime; valid response, malformed response and network failure fallback to local classifier.
 - policy candidate aggregation shows interview, exam, Hanam basic income and work-experience candidates with official provenance.
 - Kakao AlimTalk remains visibly planned and is never sent.
+
+## Iteration 3 additions
+
+- Fresh browser load without a cookie: login surface visible; profile summary, calendar events, policy cards, evidence, and private controls absent/empty.
+- Seed data is never restored for anonymous localStorage; logout clears rendered/private state and subsequent reload remains anonymous.
+- Signup/login/session/logout/profile API flow is exercised through the browser, not only direct HTTP tests.
+- Authenticated direct event creation sends only allowed fields to `/api/ai/analyze`, updates event type, and refreshes policy matches.
+- Groq 200, malformed response, 401/429/5xx and timeout all preserve local fallback and never expose the key.
+- User A and User B have isolated profiles/events/policy results.

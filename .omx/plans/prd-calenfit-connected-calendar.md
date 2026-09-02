@@ -75,3 +75,11 @@
 - Google OAuth는 server start/callback/disconnect/status/sync contract와 normalized event schema를 제공한다. access/refresh token은 서버 전용이다.
 - Grok adapter는 `/api/ai/analyze` proxy contract를 사용하고, 입력은 제목·설명·시작시각으로 제한한다. 실패·미설정 시 로컬 안전 분류기로 fallback한다.
 - Kakao AlimTalk live delivery는 이번 iteration의 비목표이며 승인 템플릿·사업자 API·수신 동의가 필요한 후속 작업으로 문서화한다.
+
+## Iteration 3 — Authenticated MVP gate
+
+- Anonymous state is an explicit empty state: no seed profile/events/policies/evidence/private settings are rendered or restored.
+- Signup/login establishes a server session; session restore is authoritative and logout/401 clears the private client state.
+- Profile onboarding is required before private recommendations; profile persistence is server-backed when authenticated and recalculates only that user's matches.
+- Direct event creation is available after login when Google is disconnected. It sends title, description and start time through the Groq proxy, then applies deterministic policy rules.
+- The existing local classifier remains an offline fallback, but its output never causes anonymous data to appear.

@@ -279,7 +279,7 @@ async function run() {
     };
     const navigate = async () => {
       const loaded = cdp.once("Page.loadEventFired", event => event.sessionId === sessionId);
-      await pageSend("Page.navigate", { url: `${origin}/` });
+      await pageSend("Page.navigate", { url: `${origin}/?e2e-auth=1` });
       await loaded;
       await sleep(150);
     };
@@ -311,6 +311,12 @@ async function run() {
       await setDevice(1440, 900, false);
     };
 
+    const anonymousLoaded = cdp.once("Page.loadEventFired", event => event.sessionId === sessionId);
+    await pageSend("Page.navigate", { url: `${origin}/` });
+    await anonymousLoaded;
+    await sleep(120);
+    assertEqual(await evaluate(`document.querySelectorAll(".upcoming-events .event-card").length`), 0, "anonymous user sees seeded events");
+    assertEqual(await evaluate(`document.querySelector("#main-content")?.classList.contains("auth-anonymous")`), true, "anonymous auth gate missing");
     await navigate();
     await waitFor(() => evaluate(`Boolean(globalThis.calenfit && document.querySelector("#event-list"))`), { message: "initial app render" });
     const sameOrigin = new URL(origin).origin;
@@ -409,7 +415,7 @@ async function run() {
     // Exam-specific UI has a different task plan, recovery model, and policy CTA.
     await keyboardActivate("#reset-demo");
     await waitState(next => next?.events?.length >= 2 && next.selectedEventId === "event-interview");
-    await keyboardActivate('[data-event-id="event-exam"]');
+    await click('[data-event-id="event-exam"]');
     await waitState(next => next?.selectedEventId === "event-exam");
     assert((await text("#event-detail")).includes("정보보안기사 필기"), "exam event was not selected");
     assert((await text("#task-list")).includes("결제영수증·접수확인 보관"), "exam receipt task is missing");
@@ -427,7 +433,7 @@ async function run() {
     record("exam UI, policy match, evidence metadata, and task plan");
 
     // Clipboard success and the visible failure/fallback status are both browser-injectable.
-    await keyboardActivate('[data-event-id="event-interview"]');
+    await click('[data-event-id="event-interview"]');
     await waitState(next => next?.selectedEventId === "event-interview");
     await evaluate(`(() => { window.__copiedText = ""; Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async value => { window.__copiedText = value; } } }); })()`);
     await keyboardActivate("[data-copy-request]");
