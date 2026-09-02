@@ -36,7 +36,7 @@ node server.mjs
 - `app.js`의 결정론적 로컬 분류기와 명시적 정책 규칙을 사용합니다. AI API, OAuth, 실제 캘린더·메일·신청 전송은 포함하지 않습니다.
 - 정책 상태는 공식 링크를 참고한 데모 스냅샷이며 신청 전 각 공식 링크를 다시 확인해야 합니다.
 - 정적 브라우저 수동 확인 대상: 일정 추가/선택, 복구 체크박스, 증빙 메타데이터 표시, 모바일 390px·데스크톱 레이아웃.
-- 데모 컨트롤에서 정책 상태(접수 중·마감·예산 소진·확인 필요)를 전환할 수 있으며, 초기화는 가상 시드 상태로 되돌립니다. 로컬 ICS 파싱·미리보기·확정 가져오기가 구현되어 있고 VCALENDAR/VEVENT, 접힌 행, 날짜·시간대 경고를 검증합니다. Google은 OAuth callback·암호화 token·webhook watch를 확장할 수 있는 adapter placeholder이며, 실제 외부 캘린더 동기화는 하지 않습니다.
+- 관리자 확인 컨트롤에서 정책 상태(접수 중·마감·예산 소진·확인 필요)를 전환할 수 있으며, 초기화는 가상 시드 상태로 되돌립니다. 로컬 ICS 파싱·미리보기·확정 가져오기가 구현되어 있고 VCALENDAR/VEVENT, 접힌 행, 날짜·시간대 경고를 검증합니다. Google은 OAuth callback·암호화 token·webhook watch를 확장할 수 있는 adapter placeholder이며, 실제 외부 캘린더 동기화는 하지 않습니다.
 - API 키는 `sessionStorage`에만 보관하고, OAuth token·알림 provider key는 서버 전용입니다. SMS·카카오·이메일은 credential과 동의가 없으면 발송하지 않습니다. 자세한 운영 경계는 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), 심사용 진행은 [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md)를 참고하세요.
 - `server.mjs`는 계정 가입/로그인, HttpOnly 세션, 프로필 저장, Google OAuth start/callback/sync, Grok `/api/ai/analyze`를 제공하는 로컬 MVP 서버입니다. Kakao AlimTalk은 승인 템플릿·사업자 계약 후속 범위입니다.
 

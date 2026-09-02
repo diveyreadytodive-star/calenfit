@@ -13,7 +13,7 @@
 
 ## 연결·알림 어댑터
 
-`CalendarProviderAdapter`는 자체 캘린더, ICS, Google OAuth placeholder를 동일한 상태 계약으로 노출합니다. Google의 서버 설정 필요·연결 대기·동기화 성공 mock·권한 거부 mock은 모두 데모 상태이며 실제 OAuth나 토큰을 브라우저에 두지 않습니다. `NotificationChannelAdapter`는 웹·이메일·SMS·카카오 채널의 예약 payload와 차단 사유를 outbox에 기록하지만, 자격증명 없이는 외부 발송하지 않습니다.
+`CalendarProviderAdapter`는 자체 캘린더, ICS, Google OAuth placeholder를 동일한 상태 계약으로 노출합니다. Google의 서버 설정 필요·연결 대기·동기화 성공 mock·권한 거부 mock은 모두 현재 상태이며 실제 OAuth나 토큰을 브라우저에 두지 않습니다. `NotificationChannelAdapter`는 웹·이메일·SMS·카카오 채널의 예약 payload와 차단 사유를 outbox에 기록하지만, 자격증명 없이는 외부 발송하지 않습니다.
 
 ## 브라우저 데모 절차
 
