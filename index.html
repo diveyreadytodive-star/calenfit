@@ -292,9 +292,10 @@
               <span class="eyebrow">PROFILE</span>
               <strong id="profile-heading">내 프로필</strong>
             </span>
-            <span class="badge cool">로그인 필요</span>
+            <button id="profile-login-trigger" class="badge cool" type="button">로그인 필요</button>
           </summary>
           <div id="profile-summary" class="profile-grid" aria-live="polite"></div>
+          <button id="profile-login-button" class="secondary-button profile-login-button" type="button">로그인 / 회원가입</button>
           <form id="profile-form" class="profile-form"><label>출생연도<input name="birthYear" type="number" min="1980" max="2010" value="2001" /></label><label>거주지<input name="residence" value="경기도 하남시" /></label><label>현재 상태<select name="status"><option>미취업</option><option>재직</option><option>학생</option></select></label><label>학력/학년<input name="education" value="대학교 4학년" /></label><label>취업 목표<input name="goal" value="취업 준비" /></label><button class="secondary-button" type="submit">프로필 저장·다시 계산</button></form>
           <p class="privacy-note">
             실제 개인정보·캘린더·문서를 전송하지 않습니다. 화면의 데이터는 모두
