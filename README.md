@@ -10,13 +10,13 @@
 
 ## 실행
 
-의존성이나 빌드 단계가 없습니다. 이 폴더에서 정적 서버를 실행합니다.
+의존성이나 빌드 단계가 없습니다. 실제 로그인·Google·Grok endpoint까지 확인하려면 Node 서버를 실행합니다.
 
 ```sh
-python3 -m http.server 8000
+node server.mjs
 ```
 
-브라우저에서 `http://localhost:8000/`을 엽니다. 직접 `file://`로 열면 브라우저 보안 정책에 따라 스크립트가 제한될 수 있습니다.
+브라우저에서 `http://localhost:8000/`을 엽니다. 정적 화면만 확인하려면 `python3 -m http.server 8000`도 가능하지만 `/api/*` 기능은 제공하지 않습니다.
 
 ## 데모 흐름
 
@@ -38,6 +38,7 @@ python3 -m http.server 8000
 - 정적 브라우저 수동 확인 대상: 일정 추가/선택, 복구 체크박스, 증빙 메타데이터 표시, 모바일 390px·데스크톱 레이아웃.
 - 데모 컨트롤에서 정책 상태(접수 중·마감·예산 소진·확인 필요)를 전환할 수 있으며, 초기화는 가상 시드 상태로 되돌립니다. 로컬 ICS 파싱·미리보기·확정 가져오기가 구현되어 있고 VCALENDAR/VEVENT, 접힌 행, 날짜·시간대 경고를 검증합니다. Google은 OAuth callback·암호화 token·webhook watch를 확장할 수 있는 adapter placeholder이며, 실제 외부 캘린더 동기화는 하지 않습니다.
 - API 키는 `sessionStorage`에만 보관하고, OAuth token·알림 provider key는 서버 전용입니다. SMS·카카오·이메일은 credential과 동의가 없으면 발송하지 않습니다. 자세한 운영 경계는 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), 심사용 진행은 [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md)를 참고하세요.
+- `server.mjs`는 계정 가입/로그인, HttpOnly 세션, 프로필 저장, Google OAuth start/callback/sync, Grok `/api/ai/analyze`를 제공하는 로컬 MVP 서버입니다. Kakao AlimTalk은 승인 템플릿·사업자 계약 후속 범위입니다.
 
 ### 테스트
 

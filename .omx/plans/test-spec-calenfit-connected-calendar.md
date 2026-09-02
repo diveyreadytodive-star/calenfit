@@ -34,3 +34,12 @@ node --check app.js
 ## Exit criteria
 
 모든 단위/E2E 검증 통과, 문서·링크·자산 검사 통과, architect `APPROVED`, 새 저장소 생성·외부 원격 변경 없음.
+
+## Iteration 2 additions
+
+- login demo/server-configured states; profile setup persistence and recalculation after profile edits.
+- auth tokens absent from localStorage/sessionStorage/DOM/logs; logout clears session projection.
+- Google start/callback/disconnect/sync contracts, normalized events, missing-backend honest failure, token-free browser state.
+- Grok proxy request sends only title/description/startTime; valid response, malformed response and network failure fallback to local classifier.
+- policy candidate aggregation shows interview, exam, Hanam basic income and work-experience candidates with official provenance.
+- Kakao AlimTalk remains visibly planned and is never sent.

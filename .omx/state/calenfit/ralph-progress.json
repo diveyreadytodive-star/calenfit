@@ -6,7 +6,7 @@
   "current_phase": "complete",
   "started_at": "2026-09-02T00:00:00Z",
   "state": {
-    "context_snapshot_path": ".omx/context/calenfit-connected-calendar-20260901T173403Z.md",
+    "context_snapshot_path": ".omx/context/calenfit-auth-calendar-ai-20260902T020000Z.md",
     "interview_path": ".omx/interviews/calenfit-connected-calendar-20260902T000000Z.md",
     "prd_path": ".omx/plans/prd-calenfit-connected-calendar.md",
     "test_spec_path": ".omx/plans/test-spec-calenfit-connected-calendar.md",
@@ -19,7 +19,9 @@
       "US-006": "complete",
       "US-007": "complete"
     },
-    "no_deslop": true,
+    "no_deslop": false,
+    "completed_at": "2026-09-02T04:30:00Z",
+    "current_request": "real login/profile setup, Google Calendar integration, Grok-compatible AI placeholder and policy recommendation pipeline; Kakao AlimTalk deferred",
     "visual_verdict": {
       "score": 93,
       "verdict": "pass",

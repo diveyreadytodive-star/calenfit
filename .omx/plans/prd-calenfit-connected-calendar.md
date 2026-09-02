@@ -67,3 +67,11 @@
 ## Acceptance / verification
 
 각 story는 기존 로직 테스트와 확장 단위 테스트, 브라우저 E2E, JS 문법 검사, 자산/링크 검사, 모바일·데스크톱 캡처로 검증한다. 완료 전 architect의 `APPROVED`가 필요하다.
+
+## Iteration 2 — Auth, connected calendar, Grok placeholder
+
+- 로그인은 데모 모드와 실제 provider-ready 모드를 분리한다. 심사자는 서버 설정 환경에서 이메일/Google provider로 로그인하고, 설정이 없으면 데모 흐름을 재현한다.
+- 로그인 직후 출생일·거주지·학력/학년·취업 상태·목표·알림 동의 프로필을 저장하고, 프로필 변경 시 모든 이벤트의 정책 후보를 재계산한다.
+- Google OAuth는 server start/callback/disconnect/status/sync contract와 normalized event schema를 제공한다. access/refresh token은 서버 전용이다.
+- Grok adapter는 `/api/ai/analyze` proxy contract를 사용하고, 입력은 제목·설명·시작시각으로 제한한다. 실패·미설정 시 로컬 안전 분류기로 fallback한다.
+- Kakao AlimTalk live delivery는 이번 iteration의 비목표이며 승인 템플릿·사업자 API·수신 동의가 필요한 후속 작업으로 문서화한다.
