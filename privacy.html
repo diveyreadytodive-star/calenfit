@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>개인정보처리방침 — 캘린핏</title>
+    <link rel="stylesheet" href="legal.css" />
+  </head>
+  <body>
+    <main>
+      <a class="legal-logo" href="/">calenfit</a>
+      <p class="eyebrow">PRIVACY POLICY</p>
+      <h1>개인정보처리방침</h1>
+      <p class="updated">시행일 2026년 9월 3일</p>
+
+      <section><h2>1. 수집하는 정보</h2><p>캘린핏은 계정 이메일, 사용자가 작성한 프로필과 일정, 서비스 이용에 필요한 세션 정보를 처리합니다. 사용자가 Google Calendar 연결에 동의하면 일정 제목·설명·시작 및 종료 시각과 Google 이벤트 식별자를 읽습니다.</p></section>
+      <section><h2>2. 이용 목적</h2><p>정보는 로그인 유지, 사용자별 일정 표시, 일정 유형 분류, 관련 정책 후보와 준비 행동 안내, Google Calendar 동기화에만 사용합니다. 캘린핏은 Google 사용자 데이터를 광고나 신용평가에 사용하지 않습니다.</p></section>
+      <section><h2>3. Google 사용자 데이터</h2><p>캘린핏은 최소 읽기 권한인 <code>calendar.events.readonly</code>만 요청합니다. Google 비밀번호는 수집하지 않으며 OAuth access·refresh token은 서버에서 암호화해 저장하고 브라우저에 반환하지 않습니다. 정책 분야와 준비 행동을 찾기 위한 일정 의도 분석 시 일정 제목·설명·시각이 서버를 통해 Groq에 전달될 수 있으며, 정책 자격이나 금융 판단을 요청하지 않습니다.</p></section>
+      <section><h2>4. 저장과 보유</h2><p>계정·프로필·일정과 암호화된 연결 정보는 Vercel 환경의 Neon PostgreSQL에 저장됩니다. 사용자가 Google 연결을 해제하면 저장된 Google token과 동기화된 Google 일정 사본을 삭제합니다. 법령상 보존 의무가 있는 경우를 제외하고 서비스 제공 목적이 끝난 정보는 삭제합니다.</p></section>
+      <section><h2>5. 제3자 제공과 판매</h2><p>캘린핏은 개인정보와 Google 사용자 데이터를 판매하지 않습니다. 서비스 운영을 위해 Vercel과 Neon이 인프라 처리자로 사용되며, 직접 추가하거나 Google에서 동기화한 일정의 의도 분석에 제목·설명·시각이 서버를 통해 Groq에 전달될 수 있습니다.</p></section>
+      <section><h2>6. 이용자의 선택</h2><p>사용자는 Google 계정의 권한 관리 화면 또는 캘린핏 프로필의 연결 해제 기능에서 접근 권한을 철회할 수 있습니다. 계정 데이터 삭제 요청과 개인정보 문의는 OAuth 동의 화면에 표시된 사용자 지원 이메일을 통해 접수합니다.</p></section>
+      <section><h2>7. 보안</h2><p>비밀번호는 salt와 scrypt로 해시하고, 세션은 HttpOnly·Secure·SameSite 쿠키를 사용합니다. OAuth token은 서버 측 암호화 저장하며 API key와 token을 브라우저 저장소에 보관하지 않습니다.</p></section>
+      <footer><a href="/terms.html">이용약관</a><a href="/">캘린핏으로 돌아가기</a></footer>
+    </main>
+  </body>
+</html>

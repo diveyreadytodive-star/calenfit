@@ -1,0 +1,19 @@
+{
+  "name": "calenfit",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "build": "node --check server.mjs && node --check client.js && node scripts/build.mjs",
+    "test": "node tests/app.test.js && node tests/server.test.mjs && node tests/policy-eval-matrix.test.mjs && node tests/e2e.mjs",
+    "test:sources": "node scripts/verify-policy-sources.mjs",
+    "test:live-ai": "node scripts/live-ai-intent-eval.mjs",
+    "vercel-build": "node --check server.mjs && node --check client.js && node scripts/build.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2"
+  }
+}

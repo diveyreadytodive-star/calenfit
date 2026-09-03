@@ -1,5 +1,7 @@
 # Calenfit Connected Calendar Test Specification
 
+> 2026-09-02 인증 MVP 개정: `?e2e-auth=1`과 Google 성공 mock 버튼은 합격 근거로 사용하지 않는다. E2E는 실제 `server.mjs`에서 회원가입→온보딩→일정 저장→OAuth callback/sync→로그아웃→재로그인을 검증하며 테스트 OAuth upstream만 fixture로 대체한다.
+
 ## Unit / contract tests
 
 - 기존 분류·정책·ICS·CRUD·증빙·저장 테스트 유지.
@@ -29,6 +31,8 @@
 node tests/app.test.js
 node tests/e2e.mjs
 node --check app.js
+node --check client.js
+node --check server.mjs
 ```
 
 ## Exit criteria

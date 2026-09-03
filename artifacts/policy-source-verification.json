@@ -1,0 +1,711 @@
+{
+  "checkedAt": "2026-09-03T05:29:58.417Z",
+  "total": 40,
+  "summary": {
+    "verified-content": 38,
+    "verified-host": 2
+  },
+  "results": [
+    {
+      "kind": "policy",
+      "title": "경기도 청년 면접수당",
+      "url": "https://www.jobaba.net/jobSprt/detail.do?seq=1678",
+      "host": "www.jobaba.net",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://job.gg.go.kr/jobSprt/detail.do?seq=1678",
+      "contentHints": [
+        "면접수당",
+        "경기도"
+      ],
+      "matchedHints": [
+        "면접수당",
+        "경기도"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "경기청년 역량강화 기회지원",
+      "url": "https://youth.gg.go.kr/gg/intro/youth-policy-culture-test.do?articleNo=8951&mode=view",
+      "host": "youth.gg.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.gg.go.kr/gg/intro/youth-policy-culture-test.do?articleNo=8951&mode=view",
+      "contentHints": [
+        "경기청년",
+        "역량강화",
+        "기회지원"
+      ],
+      "matchedHints": [
+        "경기청년",
+        "역량강화",
+        "기회지원"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "portal",
+      "title": "경기청년포털",
+      "url": "https://youth.gg.go.kr/gg/intro/introducing-the-gyeonggi-youth-portal.do",
+      "host": "youth.gg.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.gg.go.kr/gg/intro/introducing-the-gyeonggi-youth-portal.do",
+      "contentHints": [
+        "경기청년포털"
+      ],
+      "matchedHints": [
+        "경기청년포털"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "하남시 청년월세지원",
+      "url": "https://www.hanam.go.kr/www/contents.do?key=12878",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/www/contents.do?key=12878",
+      "contentHints": [
+        "청년월세지원",
+        "하남시"
+      ],
+      "matchedHints": [
+        "청년월세지원",
+        "하남시"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "2026년 상반기분 근로장려금",
+      "url": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238977&mi=40397",
+      "host": "b.nts.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=238977&mi=40397",
+      "contentHints": [
+        "근로장려금",
+        "상반기분"
+      ],
+      "matchedHints": [
+        "근로장려금"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "하남시 입영지원금",
+      "url": "https://www.hanam.go.kr/www/contents.do?key=12881",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/www/contents.do?key=12881",
+      "contentHints": [
+        "입영지원금",
+        "하남시"
+      ],
+      "matchedHints": [
+        "입영지원금",
+        "하남시"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "하남시 1인가구 청년 무료 건강검진",
+      "url": "https://www.hanam.go.kr/www/contents.do?key=12879",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/www/contents.do?key=12879",
+      "contentHints": [
+        "1인가구",
+        "건강검진",
+        "하남시",
+        "무료"
+      ],
+      "matchedHints": [
+        "1인가구",
+        "건강검진",
+        "하남시",
+        "무료"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "하남시 취업교육 청년지원사업",
+      "url": "https://www.hanam.go.kr/www/selectGosiData.do?key=171&not_ancmt_mgt_no=49963&not_ancmt_se_code=01%2C04",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/www/selectGosiData.do?key=171&not_ancmt_mgt_no=49963&not_ancmt_se_code=01%2C04",
+      "contentHints": [
+        "청년지원사업",
+        "취업교육",
+        "하남시"
+      ],
+      "matchedHints": [
+        "청년지원사업",
+        "취업교육",
+        "하남시"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "국민내일배움카드",
+      "url": "https://m.work24.go.kr/hr/h/a/1100/selectIssuGudn.do",
+      "host": "m.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://m.work24.go.kr/hr/h/a/1100/selectIssuGudn.do",
+      "contentHints": [
+        "국민내일배움카드"
+      ],
+      "matchedHints": [
+        "국민내일배움카드"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "미래내일 일경험 지원사업",
+      "url": "https://yw.work24.go.kr/main.do",
+      "host": "yw.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://yw.work24.go.kr/main.do",
+      "contentHints": [
+        "미래내일",
+        "일경험"
+      ],
+      "matchedHints": [
+        "미래내일",
+        "일경험"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "국민취업지원제도",
+      "url": "https://www.work24.go.kr/ua/z/z/1300/selectEmssRqutIntro.do",
+      "host": "www.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.work24.go.kr/ua/z/z/1300/selectEmssRqutIntro.do",
+      "contentHints": [
+        "국민취업지원제도"
+      ],
+      "matchedHints": [
+        "국민취업지원제도"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "국민체력100 튼튼머니",
+      "url": "https://nfa.kspo.or.kr/community/board/selectNoticeList.kspo?menuId=A05_B01",
+      "host": "nfa.kspo.or.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://nfa.kspo.or.kr/community/board/selectNoticeList.kspo?menuId=A05_B01",
+      "contentHints": [
+        "국민체력100",
+        "튼튼머니"
+      ],
+      "matchedHints": [
+        "국민체력100",
+        "튼튼머니"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "2026 문화누리카드 체육활동 지원",
+      "url": "https://www.mnuri.kr/munhwa/cardIssueGuide.do",
+      "host": "www.mnuri.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.mnuri.kr/munhwa/cardIssueGuide.do",
+      "contentHints": [
+        "문화누리카드",
+        "체육활동"
+      ],
+      "matchedHints": [
+        "문화누리카드"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "2026 스포츠강좌이용권",
+      "url": "https://www.hanam.go.kr/www/selectBbsNttView.do?bbsNo=30&key=170&nttNo=494309",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/www/selectBbsNttView.do?bbsNo=30&key=170&nttNo=494309",
+      "contentHints": [
+        "스포츠강좌이용권"
+      ],
+      "matchedHints": [
+        "스포츠강좌이용권"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "청년월세 지원사업",
+      "url": "https://www.bokjiro.go.kr/ssis-teu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661",
+      "host": "www.bokjiro.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661",
+      "contentHints": [
+        "청년월세"
+      ],
+      "matchedHints": [
+        "청년월세"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "서울 청년 부동산 중개보수 및 이사비 지원",
+      "url": "https://youth.seoul.go.kr/infoData/plcyInfo/view.do?key=2309150002&plcyBizId=V202600006&sprtInfoId=",
+      "host": "youth.seoul.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.seoul.go.kr/infoData/plcyInfo/view.do?key=2309150002&plcyBizId=V202600006&sprtInfoId=",
+      "contentHints": [
+        "중개보수",
+        "부동산",
+        "이사비",
+        "서울"
+      ],
+      "matchedHints": [
+        "중개보수",
+        "부동산",
+        "이사비",
+        "서울"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "첫만남이용권",
+      "url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004656",
+      "host": "www.bokjiro.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004656",
+      "contentHints": [
+        "첫만남이용권"
+      ],
+      "matchedHints": [
+        "첫만남이용권"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "육아휴직급여",
+      "url": "https://www.work24.go.kr/cm/c/f/1100/selecSystInfo.do?systId=SI00000402",
+      "host": "www.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.work24.go.kr/cm/c/f/1100/selecSystInfo.do?systId=SI00000402",
+      "contentHints": [
+        "육아휴직급여"
+      ],
+      "matchedHints": [
+        "육아휴직급여"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "실업급여",
+      "url": "https://m.work24.go.kr/cm/c/f/1100/selecSystInfo.do?systCnntId=CI00001715&systId=SI00000411",
+      "host": "m.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://m.work24.go.kr/cm/c/f/1100/selecSystInfo.do?systCnntId=CI00001715&systId=SI00000411",
+      "contentHints": [
+        "실업급여"
+      ],
+      "matchedHints": [
+        "실업급여"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "경기청년 결혼 축하 복지포인트 지원",
+      "url": "https://youth.gg.go.kr/gg/intro/youth-policy-housing-test.do?articleNo=8975&mode=view",
+      "host": "youth.gg.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.gg.go.kr/gg/intro/youth-policy-housing-test.do?articleNo=8975&mode=view",
+      "contentHints": [
+        "복지포인트",
+        "경기청년",
+        "결혼",
+        "축하"
+      ],
+      "matchedHints": [
+        "복지포인트",
+        "경기청년",
+        "결혼",
+        "축하"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "부산청년만원+문화패스",
+      "url": "https://young.busan.go.kr/index.nm?menuCd=234",
+      "host": "young.busan.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://young.busan.go.kr/index.nm?menuCd=234",
+      "contentHints": [
+        "부산청년만원",
+        "문화패스"
+      ],
+      "matchedHints": [
+        "부산청년만원",
+        "문화패스"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "광주청년 일경험드림",
+      "url": "https://youth.gwangju.go.kr/www/50?policyId=1252",
+      "host": "youth.gwangju.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.gwangju.go.kr/www/50?policyId=1252",
+      "contentHints": [
+        "일경험드림",
+        "광주청년"
+      ],
+      "matchedHints": [
+        "일경험드림",
+        "광주청년"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "2026년 2학기 국가장학금",
+      "url": "https://www.kosaf.go.kr/ko/scholar.do?naviParam=JH%2C02%2C00%2C00&pg=scholarship_submain01",
+      "host": "www.kosaf.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.kosaf.go.kr/ko/scholar.do?naviParam=JH%2C02%2C00%2C00&pg=scholarship_submain01",
+      "contentHints": [
+        "국가장학금",
+        "2학기"
+      ],
+      "matchedHints": [
+        "국가장학금",
+        "2학기"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "하남시 청년기본소득 3분기",
+      "url": "https://www.hanam.go.kr/www/contents.do?key=12491",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/www/contents.do?key=12491",
+      "contentHints": [
+        "청년기본소득",
+        "하남시",
+        "3분기"
+      ],
+      "matchedHints": [
+        "청년기본소득",
+        "하남시",
+        "3분기"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "청년희망적금",
+      "url": "https://www.fsc.go.kr/po020201/77339",
+      "host": "www.fsc.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.fsc.go.kr/po020201/77339",
+      "contentHints": [
+        "청년희망적금"
+      ],
+      "matchedHints": [
+        "청년희망적금"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "2026 고유가 피해지원금",
+      "url": "https://www.hanam.go.kr/cleanh/cleanhBbsNttWebView.do?key=4348&nttNo=3353",
+      "host": "www.hanam.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.hanam.go.kr/cleanh/cleanhBbsNttWebView.do?key=4348&nttNo=3353",
+      "contentHints": [
+        "피해지원금",
+        "고유가"
+      ],
+      "matchedHints": [
+        "피해지원금",
+        "고유가"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "대학 재학생 맞춤형 고용서비스",
+      "url": "https://www.work24.go.kr/fs/b/a/0100/selectOperUnivList.do?currentPageNo=1&recordCountPerPage=10",
+      "host": "www.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.work24.go.kr/fs/b/a/0100/selectOperUnivList.do?currentPageNo=1&recordCountPerPage=10",
+      "contentHints": [
+        "고용서비스",
+        "재학생",
+        "맞춤형",
+        "대학"
+      ],
+      "matchedHints": [
+        "고용서비스",
+        "재학생",
+        "맞춤형",
+        "대학"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "보건소 금연클리닉",
+      "url": "https://nosmk.khepi.or.kr/nsk/ntcc/subIndex/66.do",
+      "host": "nosmk.khepi.or.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://nosmk.khepi.or.kr/nsk/ntcc/subIndex/66.do",
+      "contentHints": [
+        "금연클리닉",
+        "보건소"
+      ],
+      "matchedHints": [
+        "금연클리닉",
+        "보건소"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "청년도전지원사업",
+      "url": "https://www.work24.go.kr/wk/g/b/1100/busiIntro.do",
+      "host": "www.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.work24.go.kr/wk/g/b/1100/busiIntro.do",
+      "contentHints": [
+        "청년도전지원사업"
+      ],
+      "matchedHints": [
+        "청년도전지원사업"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "서울 청년수당",
+      "url": "https://youth.seoul.go.kr/infoData/plcyInfo/view.do?key=2309150002&plcyBizId=V202600005&sprtInfoId=",
+      "host": "youth.seoul.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.seoul.go.kr/infoData/plcyInfo/view.do?key=2309150002&plcyBizId=V202600005&sprtInfoId=",
+      "contentHints": [
+        "청년수당",
+        "서울"
+      ],
+      "matchedHints": [
+        "청년수당",
+        "서울"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "부산청년디딤돌카드 플러스",
+      "url": "https://young.busan.go.kr/index.nm?menuCd=31",
+      "host": "young.busan.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://young.busan.go.kr/index.nm?menuCd=31",
+      "contentHints": [
+        "부산청년디딤돌카드",
+        "플러스"
+      ],
+      "matchedHints": [
+        "플러스"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "청년내일저축계좌",
+      "url": "https://www.bokjiro.go.kr/ssis-teu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00000060",
+      "host": "www.bokjiro.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00000060",
+      "contentHints": [
+        "청년내일저축계좌"
+      ],
+      "matchedHints": [
+        "청년내일저축계좌"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "policy",
+      "title": "서울 청년 마음건강 지원",
+      "url": "https://youth.seoul.go.kr/youthConts.do?key=2310100076&sc_bbsStngSn=2212200001&sc_pbancSeCd=009",
+      "host": "youth.seoul.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.seoul.go.kr/youthConts.do?key=2310100076&sc_bbsStngSn=2212200001&sc_pbancSeCd=009",
+      "contentHints": [
+        "마음건강",
+        "서울"
+      ],
+      "matchedHints": [
+        "마음건강",
+        "서울"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "portal",
+      "title": "온통청년",
+      "url": "https://www.youthcenter.go.kr/youthPolicy/ythPlcyTotalSearch?pubotYn=Y",
+      "host": "www.youthcenter.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.youthcenter.go.kr/youthPolicy/ythPlcyTotalSearch?pubotYn=Y",
+      "contentHints": [
+        "온통청년"
+      ],
+      "matchedHints": [
+        "온통청년"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "portal",
+      "title": "정부24 혜택알리미",
+      "url": "https://plus.gov.kr/portal/benefitV2/",
+      "host": "plus.gov.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://plus.gov.kr/portal/benefitV2/",
+      "contentHints": [
+        "혜택알리미",
+        "정부24"
+      ],
+      "matchedHints": [
+        "혜택알리미",
+        "정부24"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "portal",
+      "title": "복지로",
+      "url": "https://www.bokjiro.go.kr/",
+      "host": "www.bokjiro.go.kr",
+      "outcome": "verified-host",
+      "status": 200,
+      "finalUrl": "https://www.bokjiro.go.kr/ssis-tbu/",
+      "contentHints": [
+        "복지로"
+      ],
+      "matchedHints": [],
+      "contentMatched": false
+    },
+    {
+      "kind": "portal",
+      "title": "고용24",
+      "url": "https://www.work24.go.kr/cm/main.do",
+      "host": "www.work24.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://www.work24.go.kr/cm/main.do",
+      "contentHints": [
+        "고용24"
+      ],
+      "matchedHints": [
+        "고용24"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "portal",
+      "title": "청년몽땅정보통",
+      "url": "https://youth.seoul.go.kr/mainA.do",
+      "host": "youth.seoul.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.seoul.go.kr/mainA.do",
+      "contentHints": [
+        "청년몽땅정보통"
+      ],
+      "matchedHints": [
+        "청년몽땅정보통"
+      ],
+      "contentMatched": true
+    },
+    {
+      "kind": "portal",
+      "title": "부산청년플랫폼",
+      "url": "https://young.busan.go.kr/",
+      "host": "young.busan.go.kr",
+      "outcome": "verified-host",
+      "status": 200,
+      "finalUrl": "https://young.busan.go.kr/",
+      "contentHints": [
+        "부산청년플랫폼"
+      ],
+      "matchedHints": [],
+      "contentMatched": false
+    },
+    {
+      "kind": "portal",
+      "title": "광주청년통합플랫폼",
+      "url": "https://youth.gwangju.go.kr/www/50",
+      "host": "youth.gwangju.go.kr",
+      "outcome": "verified-content",
+      "status": 200,
+      "finalUrl": "https://youth.gwangju.go.kr/www/50",
+      "contentHints": [
+        "광주청년통합플랫폼"
+      ],
+      "matchedHints": [
+        "광주청년통합플랫폼"
+      ],
+      "contentMatched": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+.data/
+.data/**
+.data/calenfit.json
+.env*
+!.env.example
+.git/
+.omx/
+artifacts/
+docs/
+tests/
+*.png
+PLAN.md
+RALPH-PROMPT.md

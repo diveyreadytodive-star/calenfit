@@ -1,5 +1,4 @@
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
 const {
   STORAGE_KEY, SCHEMA_VERSION, MAX_EVIDENCE_BYTES, PROFILE, SEED_POLICIES, SEED_EVENTS,
   inferEventType, classifyEvent, normalizePolicy, parseICS, matchPolicies,
@@ -9,12 +8,13 @@ const {
   CalendarProviderAdapter, GoogleCalendarAdapter, IcsImportAdapter, CalenfitCalendarAdapter,
   AIAnalysisAdapter, LocalSafeAIAnalysisAdapter, NotificationAdapters, scheduleNotification,
   buildNotificationPayload, DEMO_PHONE,
+  buildEmailDraft,
 } = require('../app.js');
 const store = (initial = {}) => { const data = new Map(Object.entries(initial)); return { getItem: key => data.has(key) ? data.get(key) : null, setItem: (key, value) => data.set(key, String(value)), removeItem: key => data.delete(key), data }; };
 const throwingStore = () => ({ getItem: () => { throw new Error('security'); }, setItem: () => { throw new Error('quota'); }, removeItem: () => {} });
 const interviewFixture = { title: '가상핀테크 PM 면접', date: '2026-09-05', description: '판교 오프라인 면접' };
 const examFixture = { title: '정보보안기사 필기', date: '2026-10-02', description: '응시료 영수증 보관' };
-assert.match(fs.readFileSync(require('node:path').join(__dirname, '..', 'app.js'), 'utf8'), /data-email-draft/);
+assert.match(buildEmailDraft({ title: '면접', date: '2026-09-04' }), /면접 확인 요청/);
 
 assert.equal(inferEventType('가상핀테크 PM 면접', '').type, 'interview');
 assert.equal(inferEventType('interview', '').source, 'local');

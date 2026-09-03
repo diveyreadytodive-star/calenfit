@@ -1,5 +1,7 @@
 # Calenfit Connected Calendar MVP PRD
 
+> 2026-09-02 인증 MVP 개정: 비로그인 시드와 데모 로그인은 폐기한다. 서버 세션을 인증의 유일한 기준으로 사용하고, 회원가입 직후 빈 계정과 프로필 온보딩을 제공한다. 프로필·일정·Google 연결은 userId별 서버 저장 데이터만 렌더링한다. Google Calendar는 설정된 환경에서 PKCE callback, 암호화 token, refresh, 증분 sync까지 실제 동작한다.
+
 ## Product
 
 **슬로건:** AI가 내 일정을 읽고, 받을 혜택을 찾습니다.

@@ -1,46 +1,39 @@
 {
   "mode": "ralph",
   "active": false,
-  "iteration": 1,
-  "max_iterations": 10,
-  "current_phase": "complete",
-  "started_at": "2026-09-02T00:00:00Z",
+  "iteration": 2,
+  "current_phase": "verified",
   "state": {
-    "context_snapshot_path": ".omx/context/calenfit-auth-calendar-ai-20260902T020000Z.md",
-    "interview_path": ".omx/interviews/calenfit-connected-calendar-20260902T000000Z.md",
-    "prd_path": ".omx/plans/prd-calenfit-connected-calendar.md",
-    "test_spec_path": ".omx/plans/test-spec-calenfit-connected-calendar.md",
-    "stories": {
-      "US-001": "complete",
-      "US-002": "complete",
-      "US-003": "complete",
-      "US-004": "complete",
-      "US-005": "complete",
-      "US-006": "complete",
-      "US-007": "complete"
-    },
-    "no_deslop": false,
-    "completed_at": "2026-09-02T04:30:00Z",
-    "current_request": "authenticated MVP: anonymous empty gate, account session/profile/events, direct event to Groq to policy pipeline; Kakao AlimTalk deferred",
+    "current_request": "authenticated MVP with server-owned account data and Google Calendar OAuth sync",
     "latest_verification": {
-      "verdict": "APPROVED",
-      "evidence": "anonymous session/events/profile return 401; live Groq returns 200 exam classification; app 94, server 10, E2E 14, syntax and diff checks pass",
-      "architect_agent": "unavailable after repeated timeout; prior blockers fixed and local thorough review complete"
+      "app_tests": 94,
+      "server_tests": 95,
+      "policy_matrix_tests": 37,
+      "browser_checks": 11,
+      "evidence": "strict production Groq intent evaluation 30/30 with provider IDs and zero unexpected domains; exact linked-policy sets; 40 official sources checked (38 content, 2 portal hosts); server-authoritative event analysis rejects forged client metadata; profile school/lifestyle goals; region isolation; temporary account cleanup",
+      "architect_security_verdict": "APPROVED"
+    },
+    "deployment": {
+      "provider": "Vercel",
+      "target": "production",
+      "url": "https://calenfit.vercel.app",
+      "status": "READY",
+      "database": "Neon PostgreSQL",
+      "verification": "production home 200, anonymous session 401, forged event create/update metadata ignored, evaluation accounts deleted; local full regression 94/95/37/11 passed; source verification 40/40",
+      "security_verdict": "APPROVED"
     },
     "visual_verdict": {
-      "score": 93,
+      "score": 96,
       "verdict": "pass",
       "category_match": true,
-      "differences": ["Reference image is a generic pastel productivity dashboard and conflicts with the task's explicit yellow/black calendar-first direction."],
-      "suggestions": ["Keep the current yellow/black hero and monthly calendar hierarchy; do not copy the unrelated reference dashboard."],
-      "reasoning": "The generated desktop/mobile captures preserve the requested yellow/black brand and calendar-first web demo, with responsive layouts and no horizontal overflow.",
-      "next_actions": ["Run final regression and architect review"]
-    },
-    "architect_review": {
-      "verdict": "APPROVED",
-      "tier": "THOROUGH",
-      "evidence": "Local final review: adapter boundaries, no-secret browser storage, AI/rules separation, non-sending notification outbox, monthly calendar, documentation, app 94/E2E 14/syntax/assets green.",
-    "external_agent_note": "Architect agents were unavailable within the verification window; no code changes were made by them. Local thorough review approved after blockers were fixed."
+      "differences": [
+        "The right rail is shorter after removing the standalone To-do panel; evidence actions remain available inside each event card."
+      ],
+      "suggestions": [
+        "Keep the event evidence disclosure compact as additional event types are added."
+      ],
+      "reasoning": "The calendar remains visually dominant, the right rail starts with policy value, and evidence actions are preserved without a separate vertical panel.",
+      "next_actions": ["Run full regression and deploy the compact rail"]
     }
   }
 }

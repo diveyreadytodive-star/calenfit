@@ -1,0 +1,1314 @@
+{
+  "checkedAt": "2026-09-03T05:24:57.094Z",
+  "target": "production-proxy",
+  "passed": 30,
+  "total": 30,
+  "rate": 1,
+  "results": [
+    {
+      "name": "interview-casual",
+      "input": {
+        "title": "내일 대표님이랑 마지막으로 얘기함",
+        "description": "채용 프로세스 최종 대면 미팅"
+      },
+      "expectedAny": [
+        "employment"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "employment"
+      ],
+      "output": {
+        "type": "interview",
+        "confidence": 0.9,
+        "rationale": "The description indicates a final in-person meeting in the hiring process, which is a job interview.",
+        "evidenceCandidates": [
+          "채용 프로세스 최종 대면 미팅"
+        ],
+        "intentTags": [
+          "채용",
+          "면접",
+          "최종 면접",
+          "대표님",
+          "미팅"
+        ],
+        "policyDomains": [
+          "employment"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-8eb4394a-9dc1-43ff-b4ce-4a6d6fa9eb34",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "internship-orientation",
+      "input": {
+        "title": "회사 체험 첫날 OT",
+        "description": "청년 일경험 프로그램 사전교육"
+      },
+      "expectedAny": [
+        "work-experience"
+      ],
+      "allowedExtra": [
+        "education",
+        "employment"
+      ],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "work-experience",
+        "employment",
+        "education"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The event is a pre‑education session for a youth work‑experience program, which does not fit the categories of interview, exam, or startup. It is a general informational event.",
+        "evidenceCandidates": [
+          "청년 일경험 프로그램 사전교육",
+          "회사 체험 첫날 OT"
+        ],
+        "intentTags": [
+          "청년 일경험",
+          "사전교육",
+          "OT",
+          "회사 체험",
+          "프로그램"
+        ],
+        "policyDomains": [
+          "work-experience",
+          "employment",
+          "education"
+        ],
+        "corrected": true,
+        "providerResponseId": "chatcmpl-06ff3664-25e1-44b5-babc-c5c9a05a2dbd",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "contract-expired",
+      "input": {
+        "title": "마지막 출근하고 고용센터",
+        "description": "계약 만료라 이직확인서 챙기기"
+      },
+      "expectedAny": [
+        "unemployment"
+      ],
+      "allowedExtra": [
+        "employment"
+      ],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "employment",
+        "unemployment"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user mentions a contract expiration and the need to bring an employment confirmation letter, indicating a job transition scenario related to employment matters.",
+        "evidenceCandidates": [
+          "계약 만료라 이직확인서 챙기기"
+        ],
+        "intentTags": [
+          "계약 만료",
+          "이직 준비",
+          "고용센터 방문",
+          "이직확인서",
+          "직무 이직"
+        ],
+        "policyDomains": [
+          "employment",
+          "unemployment"
+        ],
+        "corrected": true,
+        "providerResponseId": "chatcmpl-433bfad4-bc20-49da-a45c-3e21d2f18c99",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "certification-exam",
+      "input": {
+        "title": "정처기 실기 원서 넣기",
+        "description": "응시료 결제"
+      },
+      "expectedAny": [
+        "exam"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "exam"
+      ],
+      "output": {
+        "type": "exam",
+        "confidence": 0.95,
+        "rationale": "User is planning to submit an application for a practical exam and pay the application fee.",
+        "evidenceCandidates": [
+          "title: 정처기 실기 원서 넣기",
+          "description: 응시료 결제"
+        ],
+        "intentTags": [
+          "시험 신청",
+          "응시료 결제",
+          "실기 시험",
+          "원서 제출",
+          "시험 준비"
+        ],
+        "policyDomains": [
+          "exam"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-9ffdd130-b342-4f10-baa6-c676510f183e",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "studio-contract",
+      "input": {
+        "title": "원룸 가계약금 보내는 날",
+        "description": "보증금과 월세 조건 확인"
+      },
+      "expectedAny": [
+        "housing"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "housing"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user’s input describes a day of sending a deposit for a one-room apartment and checking deposit and monthly rent conditions, which pertains to housing matters.",
+        "evidenceCandidates": [
+          "title: \"원룸 가계약금 보내는 날\"",
+          "description: \"보증금과 월세 조건 확인\""
+        ],
+        "intentTags": [
+          "원룸",
+          "가계약금",
+          "보증금",
+          "월세",
+          "조건확인",
+          "임대",
+          "주거",
+          "계약",
+          "이사",
+          "집"
+        ],
+        "policyDomains": [
+          "housing"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-34d67131-7b8b-4b9e-bdb0-98b8894530c3",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "move-broker-fee",
+      "input": {
+        "title": "이삿짐이랑 복비 결제",
+        "description": "서울 새 자취방으로 이동"
+      },
+      "expectedAny": [
+        "housing"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "housing"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "User is planning to move to a new apartment in Seoul and pay for moving and related costs, indicating a housing-related life event.",
+        "evidenceCandidates": [
+          "title: 이삿짐이랑 복비 결제",
+          "description: 서울 새 자취방으로 이동"
+        ],
+        "intentTags": [
+          "이사",
+          "새집",
+          "이동",
+          "서울",
+          "자취",
+          "이삿짐",
+          "복비",
+          "결제",
+          "이사비",
+          "이사준비"
+        ],
+        "policyDomains": [
+          "housing"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-6b0928aa-b8b4-41fd-bda3-52d082239c24",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "earned-tax-credit",
+      "input": {
+        "title": "홈택스 반기 신청",
+        "description": "근로장려금 안내문 확인"
+      },
+      "expectedAny": [
+        "tax-credit"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "tax-credit"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user’s description indicates they are checking information about the employment incentive (근로장려금) guide, which relates to employment benefits. The title references a semi‑annual HomeTax application, but the primary intent is to review employment incentive details. Therefore the relevant policy d",
+        "evidenceCandidates": [
+          "근로장려금 안내문 확인"
+        ],
+        "intentTags": [
+          "근로장려금",
+          "홈택스",
+          "반기 신청",
+          "안내문 확인",
+          "근로자 혜택",
+          "세금 신고",
+          "소득세",
+          "근로소득"
+        ],
+        "policyDomains": [
+          "tax-credit"
+        ],
+        "corrected": true,
+        "providerResponseId": "chatcmpl-17d54525-298f-4d45-9730-1919b248b873",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "swimming-health",
+      "input": {
+        "title": "새벽 자유수영 등록",
+        "description": "체력 회복하려고 주 3회 운동"
+      },
+      "expectedAny": [
+        "sports"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "sports"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user is registering for a free swimming activity to recover physical strength, which is a sports-related activity.",
+        "evidenceCandidates": [
+          "title: 새벽 자유수영 등록",
+          "description: 체력 회복하려고 주 3회 운동"
+        ],
+        "intentTags": [
+          "자유수영",
+          "운동",
+          "체력회복",
+          "주3회",
+          "새벽운동",
+          "스포츠",
+          "등록",
+          "운동계획",
+          "운동목표",
+          "운동스케줄"
+        ],
+        "policyDomains": [
+          "sports"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-30b84646-b90c-4c5b-8d3c-49e24f715875",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "musical-booking",
+      "input": {
+        "title": "뮤지컬 티켓팅",
+        "description": "주말 공연 예매"
+      },
+      "expectedAny": [
+        "culture"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "culture"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user is planning to book tickets for a musical performance on the weekend, which is a cultural leisure activity.",
+        "evidenceCandidates": [
+          "title: \"뮤지컬 티켓팅\"",
+          "description: \"주말 공연 예매\""
+        ],
+        "intentTags": [
+          "뮤지컬",
+          "티켓 예매",
+          "주말 공연",
+          "문화 체험",
+          "예술",
+          "공연",
+          "티켓 구매",
+          "주말",
+          "음악",
+          "연극"
+        ],
+        "policyDomains": [
+          "culture"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-a6860ab1-88e2-427c-9051-ad463c206c2c",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "bootcamp",
+      "input": {
+        "title": "개발 캠프 상담",
+        "description": "직무 전환 교육과정 등록"
+      },
+      "expectedAny": [
+        "education"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "education"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "User is registering for a job transition training program, which is an educational activity.",
+        "evidenceCandidates": [
+          "직무 전환 교육과정 등록"
+        ],
+        "intentTags": [
+          "직무 전환",
+          "교육과정",
+          "등록",
+          "직업 전환",
+          "훈련",
+          "경력 전환",
+          "학습",
+          "전문가",
+          "직무",
+          "전환"
+        ],
+        "policyDomains": [
+          "education"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-74e8897d-19f1-4b07-915f-296bdf460582",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "tuition",
+      "input": {
+        "title": "2학기 등록금 납부",
+        "description": "국가장학금 서류도 제출"
+      },
+      "expectedAny": [
+        "scholarship"
+      ],
+      "allowedExtra": [
+        "education"
+      ],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "scholarship",
+        "education"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user’s input indicates a plan to pay tuition for the second semester and submit national scholarship documents, which pertains to educational financial matters and scholarship processes.",
+        "evidenceCandidates": [
+          "title: 2학기 등록금 납부",
+          "description: 국가장학금 서류도 제출"
+        ],
+        "intentTags": [
+          "등록금",
+          "장학금",
+          "2학기",
+          "납부",
+          "서류제출",
+          "학비",
+          "학자금",
+          "등록",
+          "학업"
+        ],
+        "policyDomains": [
+          "scholarship",
+          "education"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-4f36ded9-562f-4be0-a13a-c2060874389f",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "military-notice",
+      "input": {
+        "title": "나라사랑카드 챙겨서 들어가는 날",
+        "description": "입영통지서에 적힌 훈련소 입소"
+      },
+      "expectedAny": [
+        "military"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "military"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.99,
+        "rationale": "The user provided a brief note about entering a training center based on an enlistment notice, which pertains to military service. This is a general informational context rather than an interview, exam, or startup scenario.",
+        "evidenceCandidates": [
+          "입영통지서에 적힌 훈련소 입소"
+        ],
+        "intentTags": [
+          "입영",
+          "훈련소",
+          "입소",
+          "입영통지서",
+          "군입대",
+          "군사훈련",
+          "군복무",
+          "군사교육",
+          "군사서비스",
+          "군사입대"
+        ],
+        "policyDomains": [
+          "military"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-795b8750-beb7-475b-aef4-7eda6e817673",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "health-check",
+      "input": {
+        "title": "보건소에서 피검사",
+        "description": "1인가구 무료 건강검진 예약"
+      },
+      "expectedAny": [
+        "health"
+      ],
+      "allowedExtra": [
+        "family"
+      ],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "health",
+        "family"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user’s input describes a free health checkup appointment at a health center for a single-person household, which is a general health-related event.",
+        "evidenceCandidates": [
+          "보건소에서 피검사",
+          "1인가구 무료 건강검진 예약"
+        ],
+        "intentTags": [
+          "보건소",
+          "피검사",
+          "무료 건강검진",
+          "1인 가구",
+          "예약"
+        ],
+        "policyDomains": [
+          "health",
+          "family"
+        ],
+        "corrected": true,
+        "providerResponseId": "chatcmpl-888564da-6103-4618-bd2a-4e3ee8a4120b",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "counseling",
+      "input": {
+        "title": "마음이 너무 무거워 상담 예약",
+        "description": "불안과 우울 때문에 심리상담"
+      },
+      "expectedAny": [
+        "mental-health"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "mental-health"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "User wants to book a counseling appointment due to anxiety and depression.",
+        "evidenceCandidates": [
+          "불안과 우울 때문에 심리상담",
+          "마음이 너무 무거워 상담 예약"
+        ],
+        "intentTags": [
+          "상담 예약",
+          "불안",
+          "우울",
+          "심리상담",
+          "정신건강",
+          "심리치료",
+          "정신건강상담",
+          "심리상담예약",
+          "정신건강지원",
+          "심리상담서비스"
+        ],
+        "policyDomains": [
+          "mental-health"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-eb180c66-d07c-442a-8711-b86b188cc60b",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "startup-pitch",
+      "input": {
+        "title": "사업 아이디어 발표",
+        "description": "예비창업자 데모데이 피칭"
+      },
+      "expectedAny": [
+        "startup"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "startup"
+      ],
+      "output": {
+        "type": "startup",
+        "confidence": 0.95,
+        "rationale": "The event is a demo day pitch for pre-entrepreneurs, which is a startup-related activity.",
+        "evidenceCandidates": [
+          "예비창업자 데모데이 피칭",
+          "사업 아이디어 발표"
+        ],
+        "intentTags": [
+          "사업 아이디어",
+          "피칭",
+          "예비창업자",
+          "데모데이",
+          "창업 준비",
+          "비즈니스 모델",
+          "투자자",
+          "네트워킹",
+          "멘토링",
+          "피드백"
+        ],
+        "policyDomains": [
+          "startup"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-346abb9c-aef2-40ff-b915-a5cc5363a540",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "savings-goal",
+      "input": {
+        "title": "월급날 자동이체 설정",
+        "description": "청년 자산형성 통장으로 목돈 마련"
+      },
+      "expectedAny": [
+        "assets"
+      ],
+      "allowedExtra": [
+        "finance"
+      ],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "finance",
+        "assets"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "User is planning to set up an automatic transfer on payday to a youth asset formation account for saving a lump sum, which is a general financial planning activity.",
+        "evidenceCandidates": [
+          "title: 월급날 자동이체 설정",
+          "description: 청년 자산형성 통장으로 목돈 마련"
+        ],
+        "intentTags": [
+          "자동이체",
+          "월급날",
+          "청년자산형성통장",
+          "목돈준비",
+          "저축"
+        ],
+        "policyDomains": [
+          "finance",
+          "assets"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-67c0889a-d3be-4aac-b26f-32b65ab35d29",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "marriage-registration",
+      "input": {
+        "title": "둘이 구청 가는 날",
+        "description": "혼인신고서 제출하고 신혼 지원 확인"
+      },
+      "expectedAny": [
+        "marriage"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "marriage"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user describes a plan to submit a marriage registration and verify new couple support, indicating a marriage-related event.",
+        "evidenceCandidates": [
+          "혼인신고서 제출하고 신혼 지원 확인"
+        ],
+        "intentTags": [
+          "혼인신고",
+          "신혼지원",
+          "구청",
+          "신혼부부",
+          "신혼생활",
+          "신혼부부지원",
+          "신혼신고서",
+          "신혼생활준비",
+          "신혼부부지원확인",
+          "신혼신고"
+        ],
+        "policyDomains": [
+          "marriage"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-9035cec2-8445-4ce0-bdfa-0f9351ab5536",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "birth-registration",
+      "input": {
+        "title": "아기 이름 올리기",
+        "description": "출생신고하고 주민번호 받기"
+      },
+      "expectedAny": [
+        "childbirth"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "childbirth"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.99,
+        "rationale": "The user’s request is about registering a newborn’s birth and obtaining a resident registration number, which is a childbirth-related administrative action.",
+        "evidenceCandidates": [
+          "출생신고하고 주민번호 받기"
+        ],
+        "intentTags": [
+          "출생신고",
+          "주민등록번호",
+          "아기이름",
+          "신고",
+          "등록",
+          "출생신고서",
+          "신분증",
+          "가족관계증명서",
+          "출생증명서",
+          "신규등록"
+        ],
+        "policyDomains": [
+          "childbirth"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-3332ee3f-66f6-4bd3-86c2-1fc50e559e56",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "parental-leave",
+      "input": {
+        "title": "인사팀에 휴직계 내기",
+        "description": "아이 돌보려고 육아휴직 신청"
+      },
+      "expectedAny": [
+        "childcare"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "childcare"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user’s description indicates an application for parental leave to care for a child, which aligns with the childcare policy domain.",
+        "evidenceCandidates": [
+          "아이 돌보려고 육아휴직 신청"
+        ],
+        "intentTags": [
+          "육아휴직",
+          "아이돌봄",
+          "휴직신청",
+          "인사팀",
+          "가족",
+          "가정",
+          "근무조정",
+          "보호",
+          "가정생활",
+          "가족돌봄"
+        ],
+        "policyDomains": [
+          "childcare"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-e6d53f5a-df78-4233-96c0-dafb5f0f13eb",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "child-care",
+      "input": {
+        "title": "어린이집 입소 상담",
+        "description": "보육료와 아이돌봄 서비스 문의"
+      },
+      "expectedAny": [
+        "childcare"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "childcare"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user’s request is about consulting on admission to a childcare center and inquiring about childcare fees and services, which falls under the childcare policy domain.",
+        "evidenceCandidates": [
+          "title: 어린이집 입소 상담",
+          "description: 보육료와 아이돌봄 서비스 문의"
+        ],
+        "intentTags": [
+          "어린이집",
+          "보육료",
+          "입소 상담",
+          "아이돌봄 서비스",
+          "보육비",
+          "보육료 문의",
+          "보육서비스",
+          "입소 절차",
+          "보육료 계산",
+          "보육료 지원"
+        ],
+        "policyDomains": [
+          "childcare"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-07889bc3-dac8-475c-bcd6-df3097f4b2a6",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "public-transit",
+      "input": {
+        "title": "기후동행카드 충전",
+        "description": "버스 지하철 정기권"
+      },
+      "expectedAny": [
+        "transport"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "transport"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user provided information about recharging a climate companion card for bus and subway monthly passes, which is a general transportation-related activity.",
+        "evidenceCandidates": [
+          "title: 기후동행카드 충전",
+          "description: 버스 지하철 정기권",
+          "startTime: 2026-09-15T09:00:00+09:00"
+        ],
+        "intentTags": [
+          "기후동행카드 충전",
+          "버스 정기권",
+          "지하철 정기권",
+          "교통카드 충전",
+          "대중교통",
+          "정기권 구매"
+        ],
+        "policyDomains": [
+          "transport"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-bce945b3-61fc-4656-9e49-f605a0dc9ce2",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "finance-neutral",
+      "input": {
+        "title": "은행 재무상담",
+        "description": "대출 권유가 아니라 금융교육 일정"
+      },
+      "expectedAny": [
+        "finance",
+        "education"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "finance",
+        "education"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user’s description indicates a financial education session rather than a loan solicitation, which is a general informational event.",
+        "evidenceCandidates": [
+          "대출 권유가 아니라 금융교육 일정"
+        ],
+        "intentTags": [
+          "금융교육",
+          "대출권유",
+          "금융상담",
+          "교육일정"
+        ],
+        "policyDomains": [
+          "finance",
+          "education"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-40fd851c-bad8-490d-8583-1ec4746cafc8",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "job-fair",
+      "input": {
+        "title": "채용박람회 다녀오기",
+        "description": "구직 상담과 이력서 첨삭"
+      },
+      "expectedAny": [
+        "employment"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "employment"
+      ],
+      "output": {
+        "type": "interview",
+        "confidence": 0.9,
+        "rationale": "The user’s event is a job fair with resume editing, which is a form of interview preparation and job search activity.",
+        "evidenceCandidates": [
+          "title: 채용박람회 다녀오기",
+          "description: 구직 상담과 이력서 첨삭"
+        ],
+        "intentTags": [
+          "채용박람회",
+          "구직 상담",
+          "이력서 첨삭",
+          "취업 준비",
+          "구직 활동"
+        ],
+        "policyDomains": [
+          "employment"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-767a934c-2bfb-48a9-9d80-95e283c8f706",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "field-practice",
+      "input": {
+        "title": "학교 연계 현장실습 면담",
+        "description": "기업 직무체험 배정"
+      },
+      "expectedAny": [
+        "work-experience"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "work-experience"
+      ],
+      "output": {
+        "type": "interview",
+        "confidence": 0.9,
+        "rationale": "The user’s JSON describes a scheduled interview for a school-linked on‑site internship assignment, which is a work‑experience related event.",
+        "evidenceCandidates": [
+          "title: 학교 연계 현장실습 면담",
+          "description: 기업 직무체험 배정"
+        ],
+        "intentTags": [
+          "현장실습",
+          "면담",
+          "기업 직무체험",
+          "학교 연계",
+          "인턴십",
+          "직무배정",
+          "면접",
+          "실습",
+          "기업체험",
+          "교육"
+        ],
+        "policyDomains": [
+          "work-experience"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-776f0c40-ed4f-4170-8521-9d3c8c5aa6c1",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "rent-renewal",
+      "input": {
+        "title": "집주인이랑 재계약",
+        "description": "월세 계약 갱신"
+      },
+      "expectedAny": [
+        "housing"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "housing"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user is discussing renewing a monthly rent lease with the landlord, which pertains to housing matters.",
+        "evidenceCandidates": [
+          "집주인이랑 재계약",
+          "월세 계약 갱신"
+        ],
+        "intentTags": [
+          "계약 갱신",
+          "월세",
+          "집주인",
+          "임대료",
+          "계약서",
+          "계약기간",
+          "계약조건",
+          "계약서 작성",
+          "계약서 검토",
+          "계약서 서명"
+        ],
+        "policyDomains": [
+          "housing"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-5d5e0a0f-a4cc-4e3f-ada4-74ea603e1ab2",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "smoking-clinic",
+      "input": {
+        "title": "보건소 호흡 측정",
+        "description": "니코틴 끊는 상담 시작"
+      },
+      "expectedAny": [
+        "health"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "health"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user’s description indicates a health-related activity—starting nicotine cessation counseling at a health center.",
+        "evidenceCandidates": [
+          "니코틴 끊는 상담 시작"
+        ],
+        "intentTags": [
+          "니코틴 중단",
+          "담배 끊기",
+          "보건소 상담",
+          "건강 관리",
+          "흡연 금지"
+        ],
+        "policyDomains": [
+          "health"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-876201de-efcf-4b96-bac1-65ff02d05b07",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "family-dinner",
+      "input": {
+        "title": "부모님 생신 저녁",
+        "description": "가족 식사 식당 예약"
+      },
+      "expectedAny": [
+        "family",
+        "general"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "family"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user’s input describes a dinner reservation for the parents’ birthday, which is a family celebration event.",
+        "evidenceCandidates": [
+          "부모님 생신 저녁",
+          "가족 식사 식당 예약"
+        ],
+        "intentTags": [
+          "부모님 생신",
+          "가족 모임",
+          "식당 예약",
+          "축하",
+          "저녁식사",
+          "생일",
+          "가족 행사",
+          "식사 계획",
+          "예약",
+          "축하식"
+        ],
+        "policyDomains": [
+          "family"
+        ],
+        "corrected": true,
+        "providerResponseId": "chatcmpl-d2b3c406-cd80-46a6-8c02-09fcbbbcf43a",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "not-quitting",
+      "input": {
+        "title": "금연할 생각 없음",
+        "description": "친구와 잡담"
+      },
+      "expectedAny": [
+        "general"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "general"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "The user’s message describes a casual conversation about not intending to quit smoking, with no mention of a specific life event or policy domain. The content is a general chat, so the appropriate type is 'general' and the policy domain is 'general'.",
+        "evidenceCandidates": [
+          "금연할 생각 없음",
+          "친구와 잡담"
+        ],
+        "intentTags": [
+          "금연",
+          "친구와 잡담",
+          "일상 대화"
+        ],
+        "policyDomains": [
+          "general"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-4e1c7e13-3fba-4f76-8744-1b411f7edf55",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "not-moving",
+      "input": {
+        "title": "이사 안 하기로 결정",
+        "description": "계약 일정 취소"
+      },
+      "expectedAny": [
+        "general",
+        "housing"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "housing"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.9,
+        "rationale": "User decided not to move and cancel contract schedule.",
+        "evidenceCandidates": [
+          "이사 안 하기로 결정",
+          "계약 일정 취소"
+        ],
+        "intentTags": [
+          "이사",
+          "계약 취소",
+          "이사 안함",
+          "계약 일정",
+          "이사 결정"
+        ],
+        "policyDomains": [
+          "housing"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-0fe1e7f7-c3f7-4c08-b39f-22252cd8eabd",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    },
+    {
+      "name": "ordinary-birthday",
+      "input": {
+        "title": "친구 생일파티",
+        "description": "케이크 픽업"
+      },
+      "expectedAny": [
+        "general"
+      ],
+      "allowedExtra": [],
+      "hit": true,
+      "forbiddenHit": false,
+      "safeShape": true,
+      "unexpectedDomains": [],
+      "domains": [
+        "general"
+      ],
+      "output": {
+        "type": "general",
+        "confidence": 0.95,
+        "rationale": "The user provided details for a personal event—a friend’s birthday party with cake pickup, which does not correspond to any specific policy domain such as employment or health. It is a general social activity.",
+        "evidenceCandidates": [
+          "title: 친구 생일파티",
+          "description: 케이크 픽업",
+          "startTime: 2026-09-15T09:00:00+09:00"
+        ],
+        "intentTags": [
+          "생일파티",
+          "케이크픽업",
+          "친구",
+          "축하",
+          "파티",
+          "이벤트",
+          "일정",
+          "친구와의 만남",
+          "축하식",
+          "친구사랑"
+        ],
+        "policyDomains": [
+          "general"
+        ],
+        "corrected": false,
+        "providerResponseId": "chatcmpl-d824505c-a727-4c82-a657-2bd82e20e7fe",
+        "providerModel": "openai/gpt-oss-20b"
+      }
+    }
+  ]
+}

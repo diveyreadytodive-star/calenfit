@@ -1,25 +1,29 @@
-# 캘린핏 금융 AI Challenge 제안서
+# 금융 AI Challenge 제안서 — 캘린핏
 
 ## 문제와 해결
 
-청년은 면접·시험 일정은 관리하지만 지원금, 증빙, 마감을 놓친다. 캘린핏은 일정 제목·설명·시간을 읽는 AI 캘린더 혜택 에이전트로, 정책 후보와 다음 행동을 연결하고 동의 기반 알림을 예약한다.
+취업을 준비하는 청년은 면접·시험·지원 마감 일정을 이미 캘린더에 기록하지만, 연결 가능한 지원제도와 필요한 증빙 행동을 제때 찾지 못합니다. 캘린핏은 일정 신호를 AI로 분류하고 결정론적 정책 규칙으로 공식 후보와 다음 행동을 연결하는 캘린더 혜택 에이전트입니다.
 
-## 흐름
+## 사용자 흐름
 
-`일정 연동 → AI 맥락 분석 → 공식 기준 확인 → 증빙 행동 → 외부 알림 예약 → 사용자가 공식 신청`
+회원가입 또는 Google 로그인 → 맞춤 프로필 온보딩 → 직접 일정 추가 또는 Google Calendar 연결 → AI 일정 분류 → 정책 규칙 후보 생성 → 공식 공고와 증빙 행동 확인 순서입니다. 모든 데이터는 로그인한 userId에 귀속됩니다.
 
-## 기술과 역할
+## 기술 구조와 역할 분리
 
-CalendarProviderAdapter(자체/ICS/Google placeholder), AIAnalysisAdapter(로컬 fallback), PolicySourceAdapter와 결정론적 rules, metadata-only evidence, NotificationChannelAdapter(웹/이메일/SMS/카카오 비발송 outbox)로 구성한다. AI는 유형·신뢰도·근거·증빙 후보만 반환하고 자격·예산·공고 유효성·최종 신청 가능 여부는 판단하지 않는다.
+브라우저는 HttpOnly 세션을 통해 서버 API만 호출합니다. 서버는 계정·프로필·일정, Groq proxy, Google OAuth/token/sync를 담당합니다. AI는 일정 유형·근거·증빙 후보만 제안하고, 정책 규칙 엔진이 프로필 조건과 일정 유형을 바탕으로 후보를 계산합니다. 최종 자격·지급액·예산·공고 유효성은 공식 운영기관 확인 대상으로 남깁니다.
 
-## 보안과 범위
+## 개인정보와 동의
 
-API key는 `sessionStorage`, OAuth token·provider key는 서버 암호화 저장이다. OAuth callback/PKCE, webhook watch 갱신, 동의 철회·삭제, 최소 scope는 실제 서버 확장 범위다. 현재는 가상 프로필·2026년 9월 캘린더·검증된 정책 snapshot·ICS·Google 상태 mock·알림 outbox만 제공하고 실제 로그인/발송/크롤링은 하지 않는다.
+비로그인 상태에는 개인 데이터를 렌더링하지 않습니다. 비밀번호는 scrypt, 세션은 HttpOnly/SameSite 쿠키, Google token은 서버 암호화 저장을 사용합니다. 운영에서는 DB·KMS·Redis·rate limit·audit log가 필요합니다. 카카오 알림톡은 승인 템플릿, 수신 동의, 사업자 발송 서버를 갖춘 뒤 후속 구현합니다.
 
-## 심사 장면
+## 핵심 데모 장면
 
-월간 면접 셀 → 정책 공식 URL → 면접확인서 없음과 대체 증빙 → 상태별 CTA → 시험 영수증 태스크 → D-3 웹 알림 예약과 SMS/Kakao 차단 사유를 한 흐름으로 시연한다.
+- 가입 직후 아무 시드 데이터도 없는 개인 캘린더
+- 날짜를 눌러 시험 일정을 추가하고 AI 분류 결과가 해당 날짜에 즉시 표시되는 장면
+- 프로필과 일정에 따라 우측 정책 후보와 증빙 행동이 갱신되는 장면
+- Google OAuth callback 후 Google 일정이 같은 월간 캘린더에 들어오는 장면
+- 로그아웃 즉시 개인 정보가 사라지고 재로그인 시 본인 데이터만 복원되는 장면
 
-## 한 달 로드맵
+## 한 달 MVP 로드맵
 
-1주차 캘린더/ICS, 2주차 AI proxy·정책 rules·증빙, 3주차 OAuth/token/webhook·알림 서버, 4주차 동의·삭제·보안·E2E와 배포 검수.
+1주차에는 운영 DB·migration·session store를 구축하고, 2주차에는 Google OAuth 검수와 webhook queue를 완성합니다. 3주차에는 공식 정책 snapshot 관리·관리자 검수와 추천 설명을 강화합니다. 4주차에는 알림 동의·이메일/푸시 queue, 보안 점검, 접근성·모바일 QA를 진행합니다.
